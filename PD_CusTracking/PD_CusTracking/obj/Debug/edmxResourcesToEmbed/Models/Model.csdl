@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WMS_PDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="WMS_PD_Log_Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Quantity" Type="Int32" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
+    <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Shop_Packing__No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Tag_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Item_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Package" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Net" Type="Double" />
+    <Property Name="PRO_Gross" Type="Double" />
+    <Property Name="PRO_Tare" Type="Double" />
+    <Property Name="PRO_Extra" Type="Double" />
+    <Property Name="PRO_Actual" Type="Double" />
+    <Property Name="PRO_Customter_Drum_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Drum_Dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Item_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Status" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Reel_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Check_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_User_Check" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Print_TF" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Qty_Ship" Type="Int32" />
+    <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Customer">
+    <Key>
+      <PropertyRef Name="Cus_ID" />
+    </Key>
+    <Property Name="Cus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cus_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Cus_Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Location">
+    <Key>
+      <PropertyRef Name="Lo_ID" />
+    </Key>
+    <Property Name="Lo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lo_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lo_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lo_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Lo_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_SO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Des_Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_SO_tmp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Des_Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Unit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Unit_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Unit_Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_User">
+    <Key>
+      <PropertyRef Name="Mem_ID" />
+    </Key>
+    <Property Name="Mem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mem_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Create_By" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Create_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Update_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Code_Mem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mem_Change_Process" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_Close_wo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Move">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Quantity" Type="Int32" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
+    <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Status" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Quantity" Type="Double" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
+    <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Ref" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Shop_Packing__No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Tag_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Item_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Package" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Net" Type="Double" />
+    <Property Name="PRO_Gross" Type="Double" />
+    <Property Name="PRO_Tare" Type="Double" />
+    <Property Name="PRO_Extra" Type="Double" />
+    <Property Name="PRO_Actual" Type="Double" />
+    <Property Name="PRO_Customter_Drum_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Drum_Dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Item_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PRO_Status" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Reel_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Check_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_User_Check" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pro_Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Print_TF" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Qty_Ship" Type="Double" />
+    <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Site">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="S_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="S_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="S_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Mat">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Des_Material" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Pac">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Packing_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Des_Packing" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WMS_PD_Master_Pac_tmp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Packing_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Des_Packing" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="WMS_PD_Log_Product" EntityType="Self.WMS_PD_Log_Product" />
+    <EntitySet Name="WMS_PD_Master_Customer" EntityType="Self.WMS_PD_Master_Customer" />
+    <EntitySet Name="WMS_PD_Master_Location" EntityType="Self.WMS_PD_Master_Location" />
+    <EntitySet Name="WMS_PD_Master_SO" EntityType="Self.WMS_PD_Master_SO" />
+    <EntitySet Name="WMS_PD_Master_SO_tmp" EntityType="Self.WMS_PD_Master_SO_tmp" />
+    <EntitySet Name="WMS_PD_Master_Unit" EntityType="Self.WMS_PD_Master_Unit" />
+    <EntitySet Name="WMS_PD_Master_User" EntityType="Self.WMS_PD_Master_User" />
+    <EntitySet Name="WMS_PD_Move" EntityType="Self.WMS_PD_Move" />
+    <EntitySet Name="WMS_PD_Product" EntityType="Self.WMS_PD_Product" />
+    <EntitySet Name="WMS_PD_Site" EntityType="Self.WMS_PD_Site" />
+    <EntitySet Name="WMS_PD_Master_Mat" EntityType="Self.WMS_PD_Master_Mat" />
+    <EntitySet Name="WMS_PD_Master_Pac" EntityType="Self.WMS_PD_Master_Pac" />
+    <EntitySet Name="WMS_PD_Master_Pac_tmp" EntityType="Self.WMS_PD_Master_Pac_tmp" />
+  </EntityContainer>
+</Schema>

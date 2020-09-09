@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WMS_PDModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="WMS_PD_Log_Product">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Log_Product">
+        <MappingFragment StoreEntitySet="WMS_PD_Log_Product">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+          <ScalarProperty Name="PRO_Des" ColumnName="PRO_Des" />
+          <ScalarProperty Name="PRO_Lot" ColumnName="PRO_Lot" />
+          <ScalarProperty Name="PRO_Quantity" ColumnName="PRO_Quantity" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="PRO_Recive" ColumnName="PRO_Recive" />
+          <ScalarProperty Name="PRO_SO" ColumnName="PRO_SO" />
+          <ScalarProperty Name="PRO_Cus" ColumnName="PRO_Cus" />
+          <ScalarProperty Name="PRO_Ref" ColumnName="PRO_Ref" />
+          <ScalarProperty Name="PRO_Shop_Packing__No" ColumnName="PRO_Shop_Packing _No" />
+          <ScalarProperty Name="PRO_Tag_No" ColumnName="PRO_Tag_No" />
+          <ScalarProperty Name="PRO_Item_No" ColumnName="PRO_Item_No" />
+          <ScalarProperty Name="PRO_Package" ColumnName="PRO_Package" />
+          <ScalarProperty Name="PRO_Net" ColumnName="PRO_Net" />
+          <ScalarProperty Name="PRO_Gross" ColumnName="PRO_Gross" />
+          <ScalarProperty Name="PRO_Tare" ColumnName="PRO_Tare" />
+          <ScalarProperty Name="PRO_Extra" ColumnName="PRO_Extra" />
+          <ScalarProperty Name="PRO_Actual" ColumnName="PRO_Actual" />
+          <ScalarProperty Name="PRO_Customter_Drum_No" ColumnName="PRO_Customter_Drum_No" />
+          <ScalarProperty Name="PRO_Drum_Dimension" ColumnName="PRO_Drum_Dimension" />
+          <ScalarProperty Name="PRO_Item_Type" ColumnName="PRO_Item_Type" />
+          <ScalarProperty Name="PRO_Unit" ColumnName="PRO_Unit" />
+          <ScalarProperty Name="PRO_Status" ColumnName="PRO_Status" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Pro_Reel_No" ColumnName="Pro_Reel_No" />
+          <ScalarProperty Name="Pro_Check_Status" ColumnName="Pro_Check_Status" />
+          <ScalarProperty Name="Pro_User_Check" ColumnName="Pro_User_Check" />
+          <ScalarProperty Name="Pro_Owner" ColumnName="Pro_Owner" />
+          <ScalarProperty Name="Print_TF" ColumnName="Print_TF" />
+          <ScalarProperty Name="Qty_Ship" ColumnName="Qty_Ship" />
+          <ScalarProperty Name="Ref_Barcode" ColumnName="Ref_Barcode" />
+          <ScalarProperty Name="Tranfer_Sap" ColumnName="Tranfer_Sap" />
+          <ScalarProperty Name="Tranfer_Sap_Date" ColumnName="Tranfer_Sap_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Customer">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Customer">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Customer">
+          <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
+          <ScalarProperty Name="Cus_Code" ColumnName="Cus_Code" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Address_2" ColumnName="Address 2" />
+          <ScalarProperty Name="Cus_Status" ColumnName="Cus_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Location">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Location">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Location">
+          <ScalarProperty Name="Lo_ID" ColumnName="Lo_ID" />
+          <ScalarProperty Name="Lo_Name" ColumnName="Lo_Name" />
+          <ScalarProperty Name="Lo_Des" ColumnName="Lo_Des" />
+          <ScalarProperty Name="Lo_Code" ColumnName="Lo_Code" />
+          <ScalarProperty Name="Lo_Status" ColumnName="Lo_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_SO">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_SO">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_SO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SO" ColumnName="SO" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Des_Material" ColumnName="Des_Material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_SO_tmp">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_SO_tmp">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_SO_tmp">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SO" ColumnName="SO" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Des_Material" ColumnName="Des_Material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Unit">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Unit">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Unit">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Unit_Code" ColumnName="Unit_Code" />
+          <ScalarProperty Name="Unit_Des" ColumnName="Unit_Des" />
+          <ScalarProperty Name="Unit_Status" ColumnName="Unit_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_User">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_User">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_User">
+          <ScalarProperty Name="Mem_ID" ColumnName="Mem_ID" />
+          <ScalarProperty Name="Mem_Name" ColumnName="Mem_Name" />
+          <ScalarProperty Name="Mem_User" ColumnName="Mem_User" />
+          <ScalarProperty Name="Mem_Pass" ColumnName="Mem_Pass" />
+          <ScalarProperty Name="Mem_Des" ColumnName="Mem_Des" />
+          <ScalarProperty Name="Mem_Status" ColumnName="Mem_Status" />
+          <ScalarProperty Name="Create_By" ColumnName="Create_By" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="Code_Mem" ColumnName="Code_Mem" />
+          <ScalarProperty Name="Mem_Change_Process" ColumnName="Mem_Change_Process" />
+          <ScalarProperty Name="Mem_Close_wo" ColumnName="Mem_Close_wo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Move">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Move">
+        <MappingFragment StoreEntitySet="WMS_PD_Move">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+          <ScalarProperty Name="PRO_Des" ColumnName="PRO_Des" />
+          <ScalarProperty Name="PRO_Lot" ColumnName="PRO_Lot" />
+          <ScalarProperty Name="PRO_Quantity" ColumnName="PRO_Quantity" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="PRO_Recive" ColumnName="PRO_Recive" />
+          <ScalarProperty Name="Data1" ColumnName="Data1" />
+          <ScalarProperty Name="Data2" ColumnName="Data2" />
+          <ScalarProperty Name="Data3" ColumnName="Data3" />
+          <ScalarProperty Name="Data4" ColumnName="Data4" />
+          <ScalarProperty Name="Data5" ColumnName="Data5" />
+          <ScalarProperty Name="PRO_Status" ColumnName="PRO_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Product">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Product">
+        <MappingFragment StoreEntitySet="WMS_PD_Product">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
+          <ScalarProperty Name="PRO_Des" ColumnName="PRO_Des" />
+          <ScalarProperty Name="PRO_Lot" ColumnName="PRO_Lot" />
+          <ScalarProperty Name="PRO_Quantity" ColumnName="PRO_Quantity" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="PRO_Recive" ColumnName="PRO_Recive" />
+          <ScalarProperty Name="PRO_SO" ColumnName="PRO_SO" />
+          <ScalarProperty Name="PRO_Cus" ColumnName="PRO_Cus" />
+          <ScalarProperty Name="PRO_Ref" ColumnName="PRO_Ref" />
+          <ScalarProperty Name="PRO_Shop_Packing__No" ColumnName="PRO_Shop_Packing _No" />
+          <ScalarProperty Name="PRO_Tag_No" ColumnName="PRO_Tag_No" />
+          <ScalarProperty Name="PRO_Item_No" ColumnName="PRO_Item_No" />
+          <ScalarProperty Name="PRO_Package" ColumnName="PRO_Package" />
+          <ScalarProperty Name="PRO_Net" ColumnName="PRO_Net" />
+          <ScalarProperty Name="PRO_Gross" ColumnName="PRO_Gross" />
+          <ScalarProperty Name="PRO_Tare" ColumnName="PRO_Tare" />
+          <ScalarProperty Name="PRO_Extra" ColumnName="PRO_Extra" />
+          <ScalarProperty Name="PRO_Actual" ColumnName="PRO_Actual" />
+          <ScalarProperty Name="PRO_Customter_Drum_No" ColumnName="PRO_Customter_Drum_No" />
+          <ScalarProperty Name="PRO_Drum_Dimension" ColumnName="PRO_Drum_Dimension" />
+          <ScalarProperty Name="PRO_Item_Type" ColumnName="PRO_Item_Type" />
+          <ScalarProperty Name="PRO_Unit" ColumnName="PRO_Unit" />
+          <ScalarProperty Name="PRO_Status" ColumnName="PRO_Status" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Pro_Reel_No" ColumnName="Pro_Reel_No" />
+          <ScalarProperty Name="Pro_Check_Status" ColumnName="Pro_Check_Status" />
+          <ScalarProperty Name="Pro_User_Check" ColumnName="Pro_User_Check" />
+          <ScalarProperty Name="Pro_Owner" ColumnName="Pro_Owner" />
+          <ScalarProperty Name="Print_TF" ColumnName="Print_TF" />
+          <ScalarProperty Name="Qty_Ship" ColumnName="Qty_Ship" />
+          <ScalarProperty Name="Ref_Barcode" ColumnName="Ref_Barcode" />
+          <ScalarProperty Name="Tranfer_Sap" ColumnName="Tranfer_Sap" />
+          <ScalarProperty Name="Tranfer_Sap_Date" ColumnName="Tranfer_Sap_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Site">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Site">
+        <MappingFragment StoreEntitySet="WMS_PD_Site">
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+          <ScalarProperty Name="S_Name" ColumnName="S_Name" />
+          <ScalarProperty Name="S_Des" ColumnName="S_Des" />
+          <ScalarProperty Name="S_Type" ColumnName="S_Type" />
+          <ScalarProperty Name="S_Status" ColumnName="S_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Mat">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Mat">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Mat">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Des_Material" ColumnName="Des_Material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Pac">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Pac">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Pac">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
+          <ScalarProperty Name="Des_Packing" ColumnName="Des_Packing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WMS_PD_Master_Pac_tmp">
+      <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Pac_tmp">
+        <MappingFragment StoreEntitySet="WMS_PD_Master_Pac_tmp">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
+          <ScalarProperty Name="Des_Packing" ColumnName="Des_Packing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,116 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+@media (min-width: 200px) {
+    .col-BoxLeft {
+        float: left;
+        text-align: center;
+        width: 50%;
+    }
+
+    .col-BoxRight {
+        float: left;
+        text-align: center;
+        width: 50%;
+    }
+}
+
+.Mach {
+    border-radius: 10px;
+}
+
+
+.Font_10 {
+    font-size: 14px;
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+@media (min-width: 980px) {
+
+    .col-BoxLeft {
+        float: left;
+        text-align: right;
+        width: 50%;
+    }
+
+    .col-BoxRight {
+        float: left;
+        text-align: left;
+        width: 50%;
+    }
+}
+
+@media (min-width: 185px) {
+    .buttonHome {
+        max-width: 250px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 185px) {
+    .buttonMove {
+        max-width: 140px;
+        width: 100%;
+    }
+
+    .buttonMoveQC {
+        max-width: 80px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 185px) and (max-width: 600px) {
+
+    .datepicker.dropdown-menu {
+        border: 0px solid #ccc;
+        border: 0px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0px;
+        color: #333;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        width: 200px;
+        z-index: 1560;
+    }
+
+    .Menu {
+        text-align: center;
+    }
+
+    .datepicker table {
+        width: 200px;
+        height: 380px;
+    }
+}
+
+i.text-danger {
+    text-decoration: underline;
+}
+
+.footer-copyright-area1 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
