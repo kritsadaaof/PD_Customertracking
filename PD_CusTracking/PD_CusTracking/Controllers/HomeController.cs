@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using PD_CusTracking.Models;
 using System.Web.Script.Serialization;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace PD_CusTracking.Controllers
 {
@@ -29,12 +31,32 @@ namespace PD_CusTracking.Controllers
             return View();
         }
 
-        public ActionResult Receive()
+        public void Receive(Object sender,EventArgs e)
         {
-            return View();
+            Delivery_PD_Process DbFile = new Delivery_PD_Process();
+            
+        }
+        public static string insertdata(string tag, string truck, string user)
+        {
+            string msg = "";
+            SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;initial catalog=WMS_PD;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("insert into Delivery_PD_Process values(@tag, @truck,@user)", con);
+            cmd.Parameters.AddWithValue("@tag", tag);
+            cmd.Parameters.AddWithValue("@truck", truck);
+            cmd.Parameters.AddWithValue("@user", user);
+            con.Open();
+            int i = cmd.ExecuteNonQuery();
+            if (i == 1)
+            {
+                msg = "true";
+            } else
+            {
+                msg = "false";
+            }
+            return msg;
         }
 
-        public string CheckUser(string USER)
+            public string CheckUser(string USER)
         {
             try
             {

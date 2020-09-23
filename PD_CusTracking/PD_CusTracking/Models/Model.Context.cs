@@ -25,6 +25,7 @@ namespace PD_CusTracking.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Delivery_PD_Process> Delivery_PD_Process { get; set; }
         public virtual DbSet<WMS_PD_Log_Product> WMS_PD_Log_Product { get; set; }
         public virtual DbSet<WMS_PD_Master_Customer> WMS_PD_Master_Customer { get; set; }
         public virtual DbSet<WMS_PD_Master_Location> WMS_PD_Master_Location { get; set; }
