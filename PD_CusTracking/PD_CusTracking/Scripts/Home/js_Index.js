@@ -10,3 +10,16 @@
         // $("form").submit(function () { return false; });//ไม่ให้FromLoadหลังกด Enter Input
     });
 });
+
+/*
+     $.post(baseUrl + "Request/SaveRQ", {
+                    MACHIN: $("#Machin").val(),
+                    BAR_KAN: selectobject.options[i].value,
+                    QTY: $("#Qty").val(),
+                    USER: $("#User").val(),
+                    TIME_ACTUAL: $("#Time_Actual").val(),
+                    PROCESS_SPEED: $("#Process_Speed").val()
+                }).done(function (data) {
+
+                });
+ */

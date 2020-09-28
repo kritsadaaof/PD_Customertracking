@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PD_CusTracking.Models;
-using System.Web.Script.Serialization;
+using PD_CusTracking.Models;//1
+//using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Web.Script.Serialization;
 
 namespace PD_CusTracking.Controllers
 {
     public class HomeController : Controller
     {
-        private Entities DbFile = new Entities();
+        private Entities DbFile = new Entities(); //2
         public ActionResult Index()
         {
             return View();
@@ -31,7 +32,12 @@ namespace PD_CusTracking.Controllers
             return View();
         }
 
-        public void Receive(Object sender,EventArgs e)
+        public ActionResult Receive()
+        { 
+            return View();
+        }
+
+        public void Receives(Object sender,EventArgs e)
         {
             Delivery_PD_Process DbFile = new Delivery_PD_Process();
             
@@ -71,5 +77,46 @@ namespace PD_CusTracking.Controllers
             }
             catch { return null; }
         }//CheckLocation  //CheckUser
+
+        public string CheckTAG(string BARCODE)
+        {
+               try
+               {
+                   var data = (from TR_Pro in DbFile.WMS_PD_Product
+                               where TR_Pro.Barcode.Equals(BARCODE)
+                               select new
+                               {
+                                   TR_Pro.Barcode,
+                                   TR_Pro.PRO_Cus
+                                   
+                               }).ToList();
+                   string jsonlog = new JavaScriptSerializer().Serialize(data);
+                   return jsonlog;
+               }
+               catch { return null; }  
+        }
+        public string SaveData(string BARCODE,string TRUCK,string USER)
+        {
+            try
+            {
+                var CheckDLY = DbFile.Delivery_PD_Process.OrderByDescending(a=>a.Delivery_WO).FirstOrDefault();
+
+                int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
+
+                var DLY = new Delivery_PD_Process();
+                DLY.Delivery_WO = WO.ToString();
+                DLY.Delivery_TAG = BARCODE;
+                DLY.Delivery_Truck = TRUCK;
+                DLY.Delivery_User = USER;
+                DLY.Delivery_Status = "T";
+                DLY.Delivery_Date = DateTime.Now;
+                DbFile.Delivery_PD_Process.Add(DLY);
+                DbFile.SaveChanges();
+                return "S";
+            }
+            catch { return "F"; }
+        }
+
+
     }
 }
