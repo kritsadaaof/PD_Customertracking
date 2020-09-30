@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PD_CusTracking.Models;//1
-//using System.Web.Script.Serialization;
-using System.Web.UI.WebControls;
+using PD_CusTracking.Models;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 
@@ -13,7 +9,7 @@ namespace PD_CusTracking.Controllers
 {
     public class HomeController : Controller
     {
-        private Entities DbFile = new Entities(); //2
+        private Entities DbFile = new Entities();
         public ActionResult Index()
         {
             return View();
@@ -76,7 +72,7 @@ namespace PD_CusTracking.Controllers
                 return jsonlog;
             }
             catch { return null; }
-        }//CheckLocation  //CheckUser
+        }
 
         public string CheckTAG(string BARCODE)
         {

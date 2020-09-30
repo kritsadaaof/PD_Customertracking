@@ -50,5 +50,6 @@ namespace PD_CusTracking.Models
         public string Ref_Barcode { get; set; }
         public string Tranfer_Sap { get; set; }
         public string Tranfer_Sap_Date { get; set; }
+        public string Pic { get; set; }
     }
 }

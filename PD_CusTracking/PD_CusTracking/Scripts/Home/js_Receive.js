@@ -16,6 +16,19 @@ $(document).ready(function () {
             // alert(pr[0]["Barcode"]);//
         });
     });
+    $("#User").change(function (e) {
+        $.post(baseUrl + "Home/CheckUser", {
+            USER: $("#User").val()
+        }).done(function (data) {
+            var pr = $.parseJSON(data);
+            if (data == "[]") {
+                $("#User").val("").focus();
+            }
+            else {
+                $("#User").val(pr[0]["Mem_Name"]);
+            }
+        });
+    });
     $("#Save").click(function () {
         if ($("#TAG").val() != "" && $("#Truck").val() != "" && $("#User").val() != "") {
             $.post(baseUrl + "Home/SaveData", {

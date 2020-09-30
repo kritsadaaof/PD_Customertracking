@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="aa" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Delivery_PD_Process">
     <Key>
       <PropertyRef Name="ID" />
@@ -10,7 +10,7 @@
     <Property Name="Delivery_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Delivery_Truck" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Delivery_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="Delivery_Date" Type="DateTime" />
+    <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="WMS_PD_Log_Product">
     <Key>
@@ -21,8 +21,8 @@
     <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Quantity" Type="Int32" />
-    <Property Name="Create_Date" Type="DateTime" />
-    <Property Name="Update_Date" Type="DateTime" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
     <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -129,8 +129,8 @@
     <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Quantity" Type="Int32" />
-    <Property Name="Create_Date" Type="DateTime" />
-    <Property Name="Update_Date" Type="DateTime" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
     <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Data1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Data2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -148,8 +148,8 @@
     <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Quantity" Type="Double" />
-    <Property Name="Create_Date" Type="DateTime" />
-    <Property Name="Update_Date" Type="DateTime" />
+    <Property Name="Create_Date" Type="DateTime" Precision="7" />
+    <Property Name="Update_Date" Type="DateTime" Precision="7" />
     <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -179,6 +179,7 @@
     <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="WMS_PD_Site">
     <Key>

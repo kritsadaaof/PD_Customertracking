@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="aa.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Delivery_PD_Process">
           <Key>
             <PropertyRef Name="ID" />
@@ -222,6 +222,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Ref_Barcode" Type="nvarchar" MaxLength="50" />
           <Property Name="Tranfer_Sap" Type="nvarchar" MaxLength="10" />
           <Property Name="Tranfer_Sap_Date" Type="nvarchar" MaxLength="10" />
+          <Property Name="Pic" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="WMS_PD_Site">
           <Key>
@@ -233,7 +234,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="S_Type" Type="varchar" MaxLength="10" />
           <Property Name="S_Status" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityContainer Name="EntitiesStoreContainer">
+        <EntityContainer Name="aaStoreContainer">
           <EntitySet Name="Delivery_PD_Process" EntityType="Self.Delivery_PD_Process" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Log_Product" EntityType="Self.WMS_PD_Log_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Master_Customer" EntityType="Self.WMS_PD_Master_Customer" Schema="dbo" store:Type="Tables" />
@@ -271,7 +272,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="aa" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Delivery_PD_Process">
           <Key>
             <PropertyRef Name="ID" />
@@ -282,7 +283,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Delivery_User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Truck" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Delivery_Date" Type="DateTime" />
+          <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="WMS_PD_Log_Product">
           <Key>
@@ -293,8 +294,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Quantity" Type="Int32" />
-          <Property Name="Create_Date" Type="DateTime" />
-          <Property Name="Update_Date" Type="DateTime" />
+          <Property Name="Create_Date" Type="DateTime" Precision="7" />
+          <Property Name="Update_Date" Type="DateTime" Precision="7" />
           <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -401,8 +402,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Quantity" Type="Int32" />
-          <Property Name="Create_Date" Type="DateTime" />
-          <Property Name="Update_Date" Type="DateTime" />
+          <Property Name="Create_Date" Type="DateTime" Precision="7" />
+          <Property Name="Update_Date" Type="DateTime" Precision="7" />
           <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Data1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Data2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -420,8 +421,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Quantity" Type="Double" />
-          <Property Name="Create_Date" Type="DateTime" />
-          <Property Name="Update_Date" Type="DateTime" />
+          <Property Name="Create_Date" Type="DateTime" Precision="7" />
+          <Property Name="Update_Date" Type="DateTime" Precision="7" />
           <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -451,6 +452,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WMS_PD_Site">
           <Key>
@@ -507,9 +509,9 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="aaStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Delivery_PD_Process">
-            <EntityTypeMapping TypeName="Entities.Delivery_PD_Process">
+            <EntityTypeMapping TypeName="aa.Delivery_PD_Process">
               <MappingFragment StoreEntitySet="Delivery_PD_Process">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Delivery_WO" ColumnName="Delivery_WO" />
@@ -522,7 +524,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Log_Product">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Log_Product">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Log_Product">
               <MappingFragment StoreEntitySet="WMS_PD_Log_Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -564,7 +566,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Customer">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Customer">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Customer">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Customer">
                 <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
                 <ScalarProperty Name="Cus_Code" ColumnName="Cus_Code" />
@@ -576,7 +578,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Location">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Location">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Location">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Location">
                 <ScalarProperty Name="Lo_ID" ColumnName="Lo_ID" />
                 <ScalarProperty Name="Lo_Name" ColumnName="Lo_Name" />
@@ -587,7 +589,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_SO">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_SO">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_SO">
               <MappingFragment StoreEntitySet="WMS_PD_Master_SO">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SO" ColumnName="SO" />
@@ -598,7 +600,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_SO_tmp">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_SO_tmp">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_SO_tmp">
               <MappingFragment StoreEntitySet="WMS_PD_Master_SO_tmp">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SO" ColumnName="SO" />
@@ -609,7 +611,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Unit">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Unit">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Unit">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Unit">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Unit_Code" ColumnName="Unit_Code" />
@@ -619,7 +621,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_User">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_User">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_User">
               <MappingFragment StoreEntitySet="WMS_PD_Master_User">
                 <ScalarProperty Name="Mem_ID" ColumnName="Mem_ID" />
                 <ScalarProperty Name="Mem_Name" ColumnName="Mem_Name" />
@@ -637,7 +639,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Move">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Move">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Move">
               <MappingFragment StoreEntitySet="WMS_PD_Move">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -657,7 +659,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Product">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Product">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Product">
               <MappingFragment StoreEntitySet="WMS_PD_Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -695,11 +697,12 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
                 <ScalarProperty Name="Ref_Barcode" ColumnName="Ref_Barcode" />
                 <ScalarProperty Name="Tranfer_Sap" ColumnName="Tranfer_Sap" />
                 <ScalarProperty Name="Tranfer_Sap_Date" ColumnName="Tranfer_Sap_Date" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Site">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Site">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Site">
               <MappingFragment StoreEntitySet="WMS_PD_Site">
                 <ScalarProperty Name="S_ID" ColumnName="S_ID" />
                 <ScalarProperty Name="S_Name" ColumnName="S_Name" />
@@ -710,7 +713,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Mat">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Mat">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Mat">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Mat">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Material" ColumnName="Material" />
@@ -719,7 +722,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Pac">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Pac">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Pac">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Pac">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
@@ -728,7 +731,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Pac_tmp">
-            <EntityTypeMapping TypeName="Entities.WMS_PD_Master_Pac_tmp">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Pac_tmp">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Pac_tmp">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
