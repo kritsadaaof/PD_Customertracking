@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EworkTTLiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TR_Record">
+    <Key>
+      <PropertyRef Name="R_ID" />
+    </Key>
+    <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WO_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mem_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Doc_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Create_Date" Type="DateTime" Precision="3" />
+    <Property Name="Update_Date" Type="DateTime" Precision="3" />
+    <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Driv_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_ID" Type="Int32" />
+    <Property Name="Truck_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SO_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AWB_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cust_Ref_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Advance" Type="Double" />
+    <Property Name="Deposit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estimate" Type="Double" />
+    <Property Name="A_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DP_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DC_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Cust_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Clear_Advance" Type="Double" />
+    <Property Name="Special" Type="Double" />
+    <Property Name="Clear_Special" Type="Double" />
+    <Property Name="Clear_Deposit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Ex_Re" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_Cus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pass_Advance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Customs_Entry_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Freight_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Planned_Clear_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Clearance_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_App" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SGate_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UGate_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Do_No" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Objective" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type_Service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_D1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_D2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Data8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Truck_Start" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DatePlan_Start" Type="DateTime" Precision="0" />
+    <Property Name="TimePlan_Start" Type="Time" Precision="7" />
+    <Property Name="DatePlan_End" Type="DateTime" Precision="0" />
+    <Property Name="TimePlan_End" Type="Time" Precision="7" />
+    <Property Name="DateActual_Start" Type="DateTime" Precision="0" />
+    <Property Name="TimeActual_Start" Type="Time" Precision="7" />
+    <Property Name="DateActual_End" Type="DateTime" Precision="0" />
+    <Property Name="TimeActual_End" Type="Time" Precision="7" />
+    <Property Name="Mileage" Type="Int32" />
+    <Property Name="Mileage_End" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="EworkTTLiveEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TR_Record" EntityType="Self.TR_Record" />
+  </EntityContainer>
+</Schema>

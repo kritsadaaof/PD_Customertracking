@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EworkTTLiveModelStoreContainer" CdmEntityContainer="EworkTTLiveEntities">
+    <EntitySetMapping Name="TR_Record">
+      <EntityTypeMapping TypeName="EworkTTLiveModel.TR_Record">
+        <MappingFragment StoreEntitySet="TR_Record">
+          <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+          <ScalarProperty Name="WO_No" ColumnName="WO_No" />
+          <ScalarProperty Name="Mem_Name" ColumnName="Mem_Name" />
+          <ScalarProperty Name="Doc_Status" ColumnName="Doc_Status" />
+          <ScalarProperty Name="Create_by" ColumnName="Create_by" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Driv_Name" ColumnName="Driv_Name" />
+          <ScalarProperty Name="Truck_ID" ColumnName="Truck_ID" />
+          <ScalarProperty Name="Truck_Des" ColumnName="Truck_Des" />
+          <ScalarProperty Name="SO_No" ColumnName="SO_No" />
+          <ScalarProperty Name="AWB_No" ColumnName="AWB_No" />
+          <ScalarProperty Name="Cust_Ref_No" ColumnName="Cust_Ref_No" />
+          <ScalarProperty Name="Advance" ColumnName="Advance" />
+          <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+          <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+          <ScalarProperty Name="A_Status" ColumnName="A_Status" />
+          <ScalarProperty Name="DP_Status" ColumnName="DP_Status" />
+          <ScalarProperty Name="DC_Status" ColumnName="DC_Status" />
+          <ScalarProperty Name="Cust_Code" ColumnName="Cust_Code" />
+          <ScalarProperty Name="Clear_Advance" ColumnName="Clear_Advance" />
+          <ScalarProperty Name="Special" ColumnName="Special" />
+          <ScalarProperty Name="Clear_Special" ColumnName="Clear_Special" />
+          <ScalarProperty Name="Clear_Deposit" ColumnName="Clear_Deposit" />
+          <ScalarProperty Name="Date_Ex_Re" ColumnName="Date_Ex_Re" />
+          <ScalarProperty Name="Email_Cus" ColumnName="Email_Cus" />
+          <ScalarProperty Name="Pass_Advance" ColumnName="Pass_Advance" />
+          <ScalarProperty Name="Customs_Entry_No" ColumnName="Customs_Entry_No" />
+          <ScalarProperty Name="Truck_Code" ColumnName="Truck_Code" />
+          <ScalarProperty Name="Freight_Type" ColumnName="Freight_Type" />
+          <ScalarProperty Name="Planned_Clear_date" ColumnName="Planned_Clear_date" />
+          <ScalarProperty Name="Clearance_Status" ColumnName="Clearance_Status" />
+          <ScalarProperty Name="User_App" ColumnName="User_App" />
+          <ScalarProperty Name="Data1" ColumnName="Data1" />
+          <ScalarProperty Name="Data2" ColumnName="Data2" />
+          <ScalarProperty Name="Data3" ColumnName="Data3" />
+          <ScalarProperty Name="SGate_pass" ColumnName="SGate_pass" />
+          <ScalarProperty Name="UGate_pass" ColumnName="UGate_pass" />
+          <ScalarProperty Name="Do_No" ColumnName="Do_No" />
+          <ScalarProperty Name="Objective" ColumnName="Objective" />
+          <ScalarProperty Name="Type_Service" ColumnName="Type_Service" />
+          <ScalarProperty Name="Tel_D1" ColumnName="Tel_D1" />
+          <ScalarProperty Name="Tel_D2" ColumnName="Tel_D2" />
+          <ScalarProperty Name="Data4" ColumnName="Data4" />
+          <ScalarProperty Name="Data5" ColumnName="Data5" />
+          <ScalarProperty Name="Data6" ColumnName="Data6" />
+          <ScalarProperty Name="Data7" ColumnName="Data7" />
+          <ScalarProperty Name="Data8" ColumnName="Data8" />
+          <ScalarProperty Name="Truck_Start" ColumnName="Truck_Start" />
+          <ScalarProperty Name="DatePlan_Start" ColumnName="DatePlan_Start" />
+          <ScalarProperty Name="TimePlan_Start" ColumnName="TimePlan_Start" />
+          <ScalarProperty Name="DatePlan_End" ColumnName="DatePlan_End" />
+          <ScalarProperty Name="TimePlan_End" ColumnName="TimePlan_End" />
+          <ScalarProperty Name="DateActual_Start" ColumnName="DateActual_Start" />
+          <ScalarProperty Name="TimeActual_Start" ColumnName="TimeActual_Start" />
+          <ScalarProperty Name="DateActual_End" ColumnName="DateActual_End" />
+          <ScalarProperty Name="TimeActual_End" ColumnName="TimeActual_End" />
+          <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+          <ScalarProperty Name="Mileage_End" ColumnName="Mileage_End" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

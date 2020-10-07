@@ -26,6 +26,7 @@ namespace PD_CusTracking.Models
         }
     
         public virtual DbSet<Delivery_PD_Process> Delivery_PD_Process { get; set; }
+        public virtual DbSet<Update_LOT_A> Update_LOT_A { get; set; }
         public virtual DbSet<WMS_PD_Log_Product> WMS_PD_Log_Product { get; set; }
         public virtual DbSet<WMS_PD_Master_Customer> WMS_PD_Master_Customer { get; set; }
         public virtual DbSet<WMS_PD_Master_Location> WMS_PD_Master_Location { get; set; }
@@ -35,6 +36,8 @@ namespace PD_CusTracking.Models
         public virtual DbSet<WMS_PD_Master_User> WMS_PD_Master_User { get; set; }
         public virtual DbSet<WMS_PD_Move> WMS_PD_Move { get; set; }
         public virtual DbSet<WMS_PD_Product> WMS_PD_Product { get; set; }
+        public virtual DbSet<WMS_PD_Product_copy1> WMS_PD_Product_copy1 { get; set; }
+        public virtual DbSet<WMS_PD_Products> WMS_PD_Products { get; set; }
         public virtual DbSet<WMS_PD_Site> WMS_PD_Site { get; set; }
         public virtual DbSet<WMS_PD_Master_Mat> WMS_PD_Master_Mat { get; set; }
         public virtual DbSet<WMS_PD_Master_Pac> WMS_PD_Master_Pac { get; set; }

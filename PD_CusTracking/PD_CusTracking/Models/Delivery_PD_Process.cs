@@ -21,5 +21,6 @@ namespace PD_CusTracking.Models
         public string Delivery_Truck { get; set; }
         public string Delivery_Status { get; set; }
         public Nullable<System.DateTime> Delivery_Date { get; set; }
+        public Nullable<System.DateTime> Delivery_Date_Cus { get; set; }
     }
 }

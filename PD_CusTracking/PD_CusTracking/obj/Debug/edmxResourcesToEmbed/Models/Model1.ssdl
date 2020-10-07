@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EworkTTLiveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TR_Record">
+    <Key>
+      <PropertyRef Name="R_ID" />
+    </Key>
+    <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WO_No" Type="varchar" MaxLength="50" />
+    <Property Name="Mem_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Doc_Status" Type="varchar" MaxLength="10" />
+    <Property Name="Create_by" Type="varchar" MaxLength="50" />
+    <Property Name="Create_Date" Type="datetime" />
+    <Property Name="Update_Date" Type="datetime" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" />
+    <Property Name="Driv_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Truck_ID" Type="int" />
+    <Property Name="Truck_Des" Type="varchar" MaxLength="50" />
+    <Property Name="SO_No" Type="varchar" MaxLength="50" />
+    <Property Name="AWB_No" Type="varchar" MaxLength="50" />
+    <Property Name="Cust_Ref_No" Type="varchar" MaxLength="50" />
+    <Property Name="Advance" Type="float" />
+    <Property Name="Deposit" Type="varchar" MaxLength="50" />
+    <Property Name="Estimate" Type="float" />
+    <Property Name="A_Status" Type="varchar" MaxLength="10" />
+    <Property Name="DP_Status" Type="varchar" MaxLength="10" />
+    <Property Name="DC_Status" Type="varchar" MaxLength="10" />
+    <Property Name="Cust_Code" Type="varchar" MaxLength="50" />
+    <Property Name="Clear_Advance" Type="float" />
+    <Property Name="Special" Type="float" />
+    <Property Name="Clear_Special" Type="float" />
+    <Property Name="Clear_Deposit" Type="varchar" MaxLength="50" />
+    <Property Name="Date_Ex_Re" Type="varchar" MaxLength="50" />
+    <Property Name="Email_Cus" Type="varchar" MaxLength="50" />
+    <Property Name="Pass_Advance" Type="varchar" MaxLength="50" />
+    <Property Name="Customs_Entry_No" Type="varchar" MaxLength="50" />
+    <Property Name="Truck_Code" Type="varchar" MaxLength="10" />
+    <Property Name="Freight_Type" Type="varchar" MaxLength="50" />
+    <Property Name="Planned_Clear_date" Type="varchar" MaxLength="50" />
+    <Property Name="Clearance_Status" Type="varchar" MaxLength="50" />
+    <Property Name="User_App" Type="varchar" MaxLength="50" />
+    <Property Name="Data1" Type="varchar" MaxLength="50" />
+    <Property Name="Data2" Type="varchar" MaxLength="50" />
+    <Property Name="Data3" Type="varchar" MaxLength="50" />
+    <Property Name="SGate_pass" Type="varchar" MaxLength="50" />
+    <Property Name="UGate_pass" Type="varchar" MaxLength="50" />
+    <Property Name="Do_No" Type="varchar" MaxLength="100" />
+    <Property Name="Objective" Type="varchar" MaxLength="50" />
+    <Property Name="Type_Service" Type="varchar" MaxLength="50" />
+    <Property Name="Tel_D1" Type="varchar" MaxLength="50" />
+    <Property Name="Tel_D2" Type="varchar" MaxLength="50" />
+    <Property Name="Data4" Type="varchar" MaxLength="50" />
+    <Property Name="Data5" Type="varchar" MaxLength="50" />
+    <Property Name="Data6" Type="varchar" MaxLength="50" />
+    <Property Name="Data7" Type="varchar" MaxLength="50" />
+    <Property Name="Data8" Type="varchar" MaxLength="50" />
+    <Property Name="Truck_Start" Type="varchar" MaxLength="50" />
+    <Property Name="DatePlan_Start" Type="date" />
+    <Property Name="TimePlan_Start" Type="time" Precision="7" />
+    <Property Name="DatePlan_End" Type="date" />
+    <Property Name="TimePlan_End" Type="time" Precision="7" />
+    <Property Name="DateActual_Start" Type="date" />
+    <Property Name="TimeActual_Start" Type="time" Precision="7" />
+    <Property Name="DateActual_End" Type="date" />
+    <Property Name="TimeActual_End" Type="time" Precision="7" />
+    <Property Name="Mileage" Type="int" />
+    <Property Name="Mileage_End" Type="int" />
+  </EntityType>
+  <EntityContainer Name="EworkTTLiveModelStoreContainer">
+    <EntitySet Name="TR_Record" EntityType="Self.TR_Record" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

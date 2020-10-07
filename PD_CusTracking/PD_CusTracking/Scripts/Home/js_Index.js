@@ -5,7 +5,13 @@
        // $("form").submit(function () { return false; });//ไม่ให้FromLoadหลังกด Enter Input
     });
     $("#Delivery").click(function () { //ทำงานหลังจากกดปุ่ม
-        alert("ยังไม่มีหน้า");
+        window.location = baseUrl + "Home/Return";  //เปิดหน้าที่ต้องการ
+        // window.location = baseUrl + "PDReturn/PDReturn";  //เปิดหน้าที่ต้องการ
+        // $("form").submit(function () { return false; });//ไม่ให้FromLoadหลังกด Enter Input
+    });
+
+    $("#DOC").click(function () { //ทำงานหลังจากกดปุ่ม
+        window.location = baseUrl + "Home/ReturnDoc";  //เปิดหน้าที่ต้องการ
         // window.location = baseUrl + "PDReturn/PDReturn";  //เปิดหน้าที่ต้องการ
         // $("form").submit(function () { return false; });//ไม่ให้FromLoadหลังกด Enter Input
     });

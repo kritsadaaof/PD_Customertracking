@@ -30,6 +30,13 @@ namespace PD_CusTracking
             bundles.Add(new ScriptBundle("~/Receive/js").Include(
                           "~/Scripts/Home/js_Receive.js"));
 
+
+            bundles.Add(new ScriptBundle("~/Return/js").Include(
+                          "~/Scripts/Home/js_Return.js"));
+
+            bundles.Add(new ScriptBundle("~/ReturnDoc/js").Include(
+                          "~/Scripts/Home/js_ReturnDoc.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EworkTTLiveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TR_Record">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WO_No" Type="varchar" MaxLength="50" />
+          <Property Name="Mem_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Doc_Status" Type="varchar" MaxLength="10" />
+          <Property Name="Create_by" Type="varchar" MaxLength="50" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="Customer" Type="varchar" MaxLength="50" />
+          <Property Name="Driv_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Truck_ID" Type="int" />
+          <Property Name="Truck_Des" Type="varchar" MaxLength="50" />
+          <Property Name="SO_No" Type="varchar" MaxLength="50" />
+          <Property Name="AWB_No" Type="varchar" MaxLength="50" />
+          <Property Name="Cust_Ref_No" Type="varchar" MaxLength="50" />
+          <Property Name="Advance" Type="float" />
+          <Property Name="Deposit" Type="varchar" MaxLength="50" />
+          <Property Name="Estimate" Type="float" />
+          <Property Name="A_Status" Type="varchar" MaxLength="10" />
+          <Property Name="DP_Status" Type="varchar" MaxLength="10" />
+          <Property Name="DC_Status" Type="varchar" MaxLength="10" />
+          <Property Name="Cust_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Clear_Advance" Type="float" />
+          <Property Name="Special" Type="float" />
+          <Property Name="Clear_Special" Type="float" />
+          <Property Name="Clear_Deposit" Type="varchar" MaxLength="50" />
+          <Property Name="Date_Ex_Re" Type="varchar" MaxLength="50" />
+          <Property Name="Email_Cus" Type="varchar" MaxLength="50" />
+          <Property Name="Pass_Advance" Type="varchar" MaxLength="50" />
+          <Property Name="Customs_Entry_No" Type="varchar" MaxLength="50" />
+          <Property Name="Truck_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Freight_Type" Type="varchar" MaxLength="50" />
+          <Property Name="Planned_Clear_date" Type="varchar" MaxLength="50" />
+          <Property Name="Clearance_Status" Type="varchar" MaxLength="50" />
+          <Property Name="User_App" Type="varchar" MaxLength="50" />
+          <Property Name="Data1" Type="varchar" MaxLength="50" />
+          <Property Name="Data2" Type="varchar" MaxLength="50" />
+          <Property Name="Data3" Type="varchar" MaxLength="50" />
+          <Property Name="SGate_pass" Type="varchar" MaxLength="50" />
+          <Property Name="UGate_pass" Type="varchar" MaxLength="50" />
+          <Property Name="Do_No" Type="varchar" MaxLength="100" />
+          <Property Name="Objective" Type="varchar" MaxLength="50" />
+          <Property Name="Type_Service" Type="varchar" MaxLength="50" />
+          <Property Name="Tel_D1" Type="varchar" MaxLength="50" />
+          <Property Name="Tel_D2" Type="varchar" MaxLength="50" />
+          <Property Name="Data4" Type="varchar" MaxLength="50" />
+          <Property Name="Data5" Type="varchar" MaxLength="50" />
+          <Property Name="Data6" Type="varchar" MaxLength="50" />
+          <Property Name="Data7" Type="varchar" MaxLength="50" />
+          <Property Name="Data8" Type="varchar" MaxLength="50" />
+          <Property Name="Truck_Start" Type="varchar" MaxLength="50" />
+          <Property Name="DatePlan_Start" Type="date" />
+          <Property Name="TimePlan_Start" Type="time" Precision="7" />
+          <Property Name="DatePlan_End" Type="date" />
+          <Property Name="TimePlan_End" Type="time" Precision="7" />
+          <Property Name="DateActual_Start" Type="date" />
+          <Property Name="TimeActual_Start" Type="time" Precision="7" />
+          <Property Name="DateActual_End" Type="date" />
+          <Property Name="TimeActual_End" Type="time" Precision="7" />
+          <Property Name="Mileage" Type="int" />
+          <Property Name="Mileage_End" Type="int" />
+        </EntityType>
+        <EntityContainer Name="EworkTTLiveModelStoreContainer">
+          <EntitySet Name="TR_Record" EntityType="Self.TR_Record" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EworkTTLiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TR_Record">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WO_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mem_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Doc_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Driv_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_ID" Type="Int32" />
+          <Property Name="Truck_Des" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SO_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AWB_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cust_Ref_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Advance" Type="Double" />
+          <Property Name="Deposit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estimate" Type="Double" />
+          <Property Name="A_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DP_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DC_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Cust_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Clear_Advance" Type="Double" />
+          <Property Name="Special" Type="Double" />
+          <Property Name="Clear_Special" Type="Double" />
+          <Property Name="Clear_Deposit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Ex_Re" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Cus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pass_Advance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customs_Entry_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Freight_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Planned_Clear_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Clearance_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_App" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SGate_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UGate_pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Do_No" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Objective" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type_Service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_D1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tel_D2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Truck_Start" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DatePlan_Start" Type="DateTime" Precision="0" />
+          <Property Name="TimePlan_Start" Type="Time" Precision="7" />
+          <Property Name="DatePlan_End" Type="DateTime" Precision="0" />
+          <Property Name="TimePlan_End" Type="Time" Precision="7" />
+          <Property Name="DateActual_Start" Type="DateTime" Precision="0" />
+          <Property Name="TimeActual_Start" Type="Time" Precision="7" />
+          <Property Name="DateActual_End" Type="DateTime" Precision="0" />
+          <Property Name="TimeActual_End" Type="Time" Precision="7" />
+          <Property Name="Mileage" Type="Int32" />
+          <Property Name="Mileage_End" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="EworkTTLiveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TR_Record" EntityType="Self.TR_Record" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EworkTTLiveModelStoreContainer" CdmEntityContainer="EworkTTLiveEntities">
+          <EntitySetMapping Name="TR_Record">
+            <EntityTypeMapping TypeName="EworkTTLiveModel.TR_Record">
+              <MappingFragment StoreEntitySet="TR_Record">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="WO_No" ColumnName="WO_No" />
+                <ScalarProperty Name="Mem_Name" ColumnName="Mem_Name" />
+                <ScalarProperty Name="Doc_Status" ColumnName="Doc_Status" />
+                <ScalarProperty Name="Create_by" ColumnName="Create_by" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Driv_Name" ColumnName="Driv_Name" />
+                <ScalarProperty Name="Truck_ID" ColumnName="Truck_ID" />
+                <ScalarProperty Name="Truck_Des" ColumnName="Truck_Des" />
+                <ScalarProperty Name="SO_No" ColumnName="SO_No" />
+                <ScalarProperty Name="AWB_No" ColumnName="AWB_No" />
+                <ScalarProperty Name="Cust_Ref_No" ColumnName="Cust_Ref_No" />
+                <ScalarProperty Name="Advance" ColumnName="Advance" />
+                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+                <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+                <ScalarProperty Name="A_Status" ColumnName="A_Status" />
+                <ScalarProperty Name="DP_Status" ColumnName="DP_Status" />
+                <ScalarProperty Name="DC_Status" ColumnName="DC_Status" />
+                <ScalarProperty Name="Cust_Code" ColumnName="Cust_Code" />
+                <ScalarProperty Name="Clear_Advance" ColumnName="Clear_Advance" />
+                <ScalarProperty Name="Special" ColumnName="Special" />
+                <ScalarProperty Name="Clear_Special" ColumnName="Clear_Special" />
+                <ScalarProperty Name="Clear_Deposit" ColumnName="Clear_Deposit" />
+                <ScalarProperty Name="Date_Ex_Re" ColumnName="Date_Ex_Re" />
+                <ScalarProperty Name="Email_Cus" ColumnName="Email_Cus" />
+                <ScalarProperty Name="Pass_Advance" ColumnName="Pass_Advance" />
+                <ScalarProperty Name="Customs_Entry_No" ColumnName="Customs_Entry_No" />
+                <ScalarProperty Name="Truck_Code" ColumnName="Truck_Code" />
+                <ScalarProperty Name="Freight_Type" ColumnName="Freight_Type" />
+                <ScalarProperty Name="Planned_Clear_date" ColumnName="Planned_Clear_date" />
+                <ScalarProperty Name="Clearance_Status" ColumnName="Clearance_Status" />
+                <ScalarProperty Name="User_App" ColumnName="User_App" />
+                <ScalarProperty Name="Data1" ColumnName="Data1" />
+                <ScalarProperty Name="Data2" ColumnName="Data2" />
+                <ScalarProperty Name="Data3" ColumnName="Data3" />
+                <ScalarProperty Name="SGate_pass" ColumnName="SGate_pass" />
+                <ScalarProperty Name="UGate_pass" ColumnName="UGate_pass" />
+                <ScalarProperty Name="Do_No" ColumnName="Do_No" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="Type_Service" ColumnName="Type_Service" />
+                <ScalarProperty Name="Tel_D1" ColumnName="Tel_D1" />
+                <ScalarProperty Name="Tel_D2" ColumnName="Tel_D2" />
+                <ScalarProperty Name="Data4" ColumnName="Data4" />
+                <ScalarProperty Name="Data5" ColumnName="Data5" />
+                <ScalarProperty Name="Data6" ColumnName="Data6" />
+                <ScalarProperty Name="Data7" ColumnName="Data7" />
+                <ScalarProperty Name="Data8" ColumnName="Data8" />
+                <ScalarProperty Name="Truck_Start" ColumnName="Truck_Start" />
+                <ScalarProperty Name="DatePlan_Start" ColumnName="DatePlan_Start" />
+                <ScalarProperty Name="TimePlan_Start" ColumnName="TimePlan_Start" />
+                <ScalarProperty Name="DatePlan_End" ColumnName="DatePlan_End" />
+                <ScalarProperty Name="TimePlan_End" ColumnName="TimePlan_End" />
+                <ScalarProperty Name="DateActual_Start" ColumnName="DateActual_Start" />
+                <ScalarProperty Name="TimeActual_Start" ColumnName="TimeActual_Start" />
+                <ScalarProperty Name="DateActual_End" ColumnName="DateActual_End" />
+                <ScalarProperty Name="TimeActual_End" ColumnName="TimeActual_End" />
+                <ScalarProperty Name="Mileage" ColumnName="Mileage" />
+                <ScalarProperty Name="Mileage_End" ColumnName="Mileage_End" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

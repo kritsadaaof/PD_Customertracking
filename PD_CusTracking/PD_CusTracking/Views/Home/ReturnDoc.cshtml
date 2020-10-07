@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Return";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/ReturnDoc/js")
+<link href="~/Content/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/datatables.min.js"></script>
+<div class="row text-center">
+    <i style="color:red">(กรอกเลขงาน เพื่อเลือกรายการล้อที่แนบรูปเอกสาร)</i>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11">
+            <div class="form-group nk-datapk-ctm form-elet-mg">
+                <i>บาร์โค้ด WO</i><i style="color:red">**</i><i id="Data_Location" style="color:red"></i>
+                <div class="input-group nk-int-st">
+                    <input id="WO" type="text" class="form-control" placeholder="กรอกเลข WO" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+    </div>
+</div>
+
+<div id="TableDetai" class="data-table-area" style="display:none">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="data-table-list">
+                <div class="basic-tb-hd" style="text-align:center">
+                    <p>ข้อมูลแสดงรายการสินค้า (กรุณาเลือกลูกค้า) </p>
+                </div>
+                <div class="table-responsive">
+                    <table id="data-table-basic" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>เลขงาน (WO)</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>ลูกค้า</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>เลขงาน (WO)</th>
+                                <th>ทะเบียนรถ</th>
+                                <th>ลูกค้า</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="TAGCus" class="row text-center" style="display:none">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+        <div class="form-element-list">
+            <input type="time" id="Time_Actual" class="form-control hidden">
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1">
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11">
+                        <div class="form-group nk-datapk-ctm form-elet-mg">
+                            <i>ลูกค้า</i><i style="color:red">**</i><i id="Data_Location" style="color:red"></i>
+                            <div class="input-group nk-int-st">
+                                <input id="Cus" type="text" class="form-control" placeholder="ยิงบาร์โค้ด TAG ล้อ" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1">
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11">
+                        <div class="form-group nk-datapk-ctm form-elet-mg">
+                            <i>คนขับรถ</i><i style="color:red"> **</i>
+                            <div class="input-group nk-int-st">
+                                <input id="User" runat="server" type="text" class="form-control" placeholder="กรอกรหัสผู้บันทึก" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-1">
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-11">
+                        <div class="form-group nk-datapk-ctm form-elet-mg">
+                            <i>เลือกรูป</i><i style="color:red"> **</i>
+                            <div class="input-group nk-int-st">
+                                <form id="formUP" enctype="multipart/form-data">
+                                    <input type="file" name="file" id="ImgUplode" />
+
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mg-t-10 text-center">
+        <a id="Save" class="btn btn-success notika-btn-success btn-default">บันทึก</a>
+        <a href="@Url.Action("Index", new {})" id="Clear" class="btn btn-success notika-btn-success btn-default">Clear</a>
+    </div>
+</div>
+
+
