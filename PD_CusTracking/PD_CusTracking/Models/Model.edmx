@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WMS_PDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="aa.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Delivery_PD_Process">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,17 +16,15 @@
           <Property Name="Delivery_Truck" Type="varchar" MaxLength="50" />
           <Property Name="Delivery_Status" Type="varchar" MaxLength="10" />
           <Property Name="Delivery_Date" Type="datetime" />
-          <Property Name="Delivery_Date_Cus" Type="datetime" />
         </EntityType>
-        <EntityType Name="Update_LOT_A">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LOT" Type="nvarchar" MaxLength="20" />
-          <Property Name="LO" Type="nvarchar" MaxLength="20" />
-          <Property Name="STATUS" Type="nvarchar" MaxLength="20" />
-        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'WMS_PD.dbo.SO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SO">
+          <Property Name="SO" Type="varchar" MaxLength="255" />
+          <Property Name="CUS" Type="varchar" MaxLength="255" />
+          <Property Name="MAT" Type="varchar" MaxLength="255" />
+          <Property Name="DES" Type="varchar" MaxLength="255" />
+        </EntityType>-->
         <EntityType Name="WMS_PD_Log_Product">
           <Key>
             <PropertyRef Name="ID" />
@@ -226,90 +224,6 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Tranfer_Sap_Date" Type="nvarchar" MaxLength="10" />
           <Property Name="Pic" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="WMS_PD_Product_copy1">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PRO_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PRO_Des" Type="nvarchar" MaxLength="100" />
-          <Property Name="PRO_Lot" Type="nvarchar" MaxLength="20" />
-          <Property Name="PRO_Quantity" Type="float" />
-          <Property Name="Create_Date" Type="datetime2" Precision="7" />
-          <Property Name="Update_Date" Type="datetime2" Precision="7" />
-          <Property Name="PRO_Recive" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_SO" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Cus" Type="nvarchar" MaxLength="100" />
-          <Property Name="PRO_Ref" Type="nvarchar" MaxLength="150" />
-          <Property Name="PRO_Shop_Packing _No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Tag_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Item_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Package" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Net" Type="float" />
-          <Property Name="PRO_Gross" Type="float" />
-          <Property Name="PRO_Tare" Type="float" />
-          <Property Name="PRO_Extra" Type="float" />
-          <Property Name="PRO_Actual" Type="float" />
-          <Property Name="PRO_Customter_Drum_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Drum_Dimension" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Item_Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Unit" Type="nvarchar" MaxLength="10" />
-          <Property Name="PRO_Status" Type="nvarchar" MaxLength="3" />
-          <Property Name="Barcode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Location" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Reel_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Check_Status" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_User_Check" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Owner" Type="nvarchar" MaxLength="50" />
-          <Property Name="Print_TF" Type="nvarchar" MaxLength="10" />
-          <Property Name="Qty_Ship" Type="float" />
-          <Property Name="Ref_Barcode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tranfer_Sap" Type="nvarchar" MaxLength="10" />
-          <Property Name="Tranfer_Sap_Date" Type="nvarchar" MaxLength="10" />
-          <Property Name="Pic" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="WMS_PD_Products">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PRO_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PRO_Des" Type="nvarchar" MaxLength="100" />
-          <Property Name="PRO_Lot" Type="nvarchar" MaxLength="20" />
-          <Property Name="PRO_Quantity" Type="float" />
-          <Property Name="Create_Date" Type="datetime2" Precision="7" />
-          <Property Name="Update_Date" Type="datetime2" Precision="7" />
-          <Property Name="PRO_Recive" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_SO" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Cus" Type="nvarchar" MaxLength="100" />
-          <Property Name="PRO_Ref" Type="nvarchar" MaxLength="150" />
-          <Property Name="PRO_Shop_Packing _No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Tag_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Item_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Package" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Net" Type="float" />
-          <Property Name="PRO_Gross" Type="float" />
-          <Property Name="PRO_Tare" Type="float" />
-          <Property Name="PRO_Extra" Type="float" />
-          <Property Name="PRO_Actual" Type="float" />
-          <Property Name="PRO_Customter_Drum_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Drum_Dimension" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Item_Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="PRO_Unit" Type="nvarchar" MaxLength="10" />
-          <Property Name="PRO_Status" Type="nvarchar" MaxLength="3" />
-          <Property Name="Barcode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Location" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Reel_No" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Check_Status" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_User_Check" Type="nvarchar" MaxLength="50" />
-          <Property Name="Pro_Owner" Type="nvarchar" MaxLength="50" />
-          <Property Name="Print_TF" Type="nvarchar" MaxLength="10" />
-          <Property Name="Qty_Ship" Type="float" />
-          <Property Name="Ref_Barcode" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tranfer_Sap" Type="nvarchar" MaxLength="10" />
-          <Property Name="Tranfer_Sap_Date" Type="nvarchar" MaxLength="10" />
-          <Property Name="Pic" Type="nvarchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="WMS_PD_Site">
           <Key>
             <PropertyRef Name="S_ID" />
@@ -320,9 +234,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="S_Type" Type="varchar" MaxLength="10" />
           <Property Name="S_Status" Type="varchar" MaxLength="10" />
         </EntityType>
-        <EntityContainer Name="WMS_PDModelStoreContainer">
+        <EntityContainer Name="aaStoreContainer">
           <EntitySet Name="Delivery_PD_Process" EntityType="Self.Delivery_PD_Process" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Update_LOT_A" EntityType="Self.Update_LOT_A" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Log_Product" EntityType="Self.WMS_PD_Log_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Master_Customer" EntityType="Self.WMS_PD_Master_Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Master_Location" EntityType="Self.WMS_PD_Master_Location" Schema="dbo" store:Type="Tables" />
@@ -332,8 +245,6 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <EntitySet Name="WMS_PD_Master_User" EntityType="Self.WMS_PD_Master_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Move" EntityType="Self.WMS_PD_Move" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Product" EntityType="Self.WMS_PD_Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WMS_PD_Product_copy1" EntityType="Self.WMS_PD_Product_copy1" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WMS_PD_Products" EntityType="Self.WMS_PD_Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Site" EntityType="Self.WMS_PD_Site" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WMS_PD_Master_Mat" EntityType="Self.WMS_PD_Master_Mat" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -357,10 +268,11 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
     FROM [dbo].[WMS_PD_Master_Pac_tmp] AS [WMS_PD_Master_Pac_tmp]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WMS_PDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="aa" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Delivery_PD_Process">
           <Key>
             <PropertyRef Name="ID" />
@@ -372,16 +284,6 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Delivery_Truck" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
-          <Property Name="Delivery_Date_Cus" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Update_LOT_A">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LOT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WMS_PD_Log_Product">
           <Key>
@@ -552,90 +454,6 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="WMS_PD_Product_copy1">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PRO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Quantity" Type="Double" />
-          <Property Name="Create_Date" Type="DateTime" Precision="7" />
-          <Property Name="Update_Date" Type="DateTime" Precision="7" />
-          <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Ref" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Shop_Packing__No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Tag_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Item_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Package" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Net" Type="Double" />
-          <Property Name="PRO_Gross" Type="Double" />
-          <Property Name="PRO_Tare" Type="Double" />
-          <Property Name="PRO_Extra" Type="Double" />
-          <Property Name="PRO_Actual" Type="Double" />
-          <Property Name="PRO_Customter_Drum_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Drum_Dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Item_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Status" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Reel_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Check_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_User_Check" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Print_TF" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Qty_Ship" Type="Double" />
-          <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="WMS_PD_Products">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PRO_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PRO_Des" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Lot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Quantity" Type="Double" />
-          <Property Name="Create_Date" Type="DateTime" Precision="7" />
-          <Property Name="Update_Date" Type="DateTime" Precision="7" />
-          <Property Name="PRO_Recive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_SO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Cus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Ref" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Shop_Packing__No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Tag_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Item_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Package" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Net" Type="Double" />
-          <Property Name="PRO_Gross" Type="Double" />
-          <Property Name="PRO_Tare" Type="Double" />
-          <Property Name="PRO_Extra" Type="Double" />
-          <Property Name="PRO_Actual" Type="Double" />
-          <Property Name="PRO_Customter_Drum_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Drum_Dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Item_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PRO_Status" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Reel_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Check_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_User_Check" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pro_Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Print_TF" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Qty_Ship" Type="Double" />
-          <Property Name="Ref_Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Tranfer_Sap" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Tranfer_Sap_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="WMS_PD_Site">
           <Key>
             <PropertyRef Name="S_ID" />
@@ -670,9 +488,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Packing_Item" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Des_Packing" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="WMS_PDEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Delivery_PD_Process" EntityType="Self.Delivery_PD_Process" />
-          <EntitySet Name="Update_LOT_A" EntityType="Self.Update_LOT_A" />
           <EntitySet Name="WMS_PD_Log_Product" EntityType="Self.WMS_PD_Log_Product" />
           <EntitySet Name="WMS_PD_Master_Customer" EntityType="Self.WMS_PD_Master_Customer" />
           <EntitySet Name="WMS_PD_Master_Location" EntityType="Self.WMS_PD_Master_Location" />
@@ -682,8 +499,6 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <EntitySet Name="WMS_PD_Master_User" EntityType="Self.WMS_PD_Master_User" />
           <EntitySet Name="WMS_PD_Move" EntityType="Self.WMS_PD_Move" />
           <EntitySet Name="WMS_PD_Product" EntityType="Self.WMS_PD_Product" />
-          <EntitySet Name="WMS_PD_Product_copy1" EntityType="Self.WMS_PD_Product_copy1" />
-          <EntitySet Name="WMS_PD_Products" EntityType="Self.WMS_PD_Products" />
           <EntitySet Name="WMS_PD_Site" EntityType="Self.WMS_PD_Site" />
           <EntitySet Name="WMS_PD_Master_Mat" EntityType="Self.WMS_PD_Master_Mat" />
           <EntitySet Name="WMS_PD_Master_Pac" EntityType="Self.WMS_PD_Master_Pac" />
@@ -694,11 +509,10 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WMS_PDModelStoreContainer" CdmEntityContainer="WMS_PDEntities">
+        <EntityContainerMapping StorageEntityContainer="aaStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Delivery_PD_Process">
-            <EntityTypeMapping TypeName="WMS_PDModel.Delivery_PD_Process">
+            <EntityTypeMapping TypeName="aa.Delivery_PD_Process">
               <MappingFragment StoreEntitySet="Delivery_PD_Process">
-                <ScalarProperty Name="Delivery_Date_Cus" ColumnName="Delivery_Date_Cus" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Delivery_WO" ColumnName="Delivery_WO" />
                 <ScalarProperty Name="Delivery_TAG" ColumnName="Delivery_TAG" />
@@ -709,18 +523,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Update_LOT_A">
-            <EntityTypeMapping TypeName="WMS_PDModel.Update_LOT_A">
-              <MappingFragment StoreEntitySet="Update_LOT_A">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LOT" ColumnName="LOT" />
-                <ScalarProperty Name="LO" ColumnName="LO" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Log_Product">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Log_Product">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Log_Product">
               <MappingFragment StoreEntitySet="WMS_PD_Log_Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -762,7 +566,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Customer">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Customer">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Customer">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Customer">
                 <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
                 <ScalarProperty Name="Cus_Code" ColumnName="Cus_Code" />
@@ -774,7 +578,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Location">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Location">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Location">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Location">
                 <ScalarProperty Name="Lo_ID" ColumnName="Lo_ID" />
                 <ScalarProperty Name="Lo_Name" ColumnName="Lo_Name" />
@@ -785,7 +589,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_SO">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_SO">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_SO">
               <MappingFragment StoreEntitySet="WMS_PD_Master_SO">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SO" ColumnName="SO" />
@@ -796,7 +600,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_SO_tmp">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_SO_tmp">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_SO_tmp">
               <MappingFragment StoreEntitySet="WMS_PD_Master_SO_tmp">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SO" ColumnName="SO" />
@@ -807,7 +611,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Unit">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Unit">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Unit">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Unit">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Unit_Code" ColumnName="Unit_Code" />
@@ -817,7 +621,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_User">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_User">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_User">
               <MappingFragment StoreEntitySet="WMS_PD_Master_User">
                 <ScalarProperty Name="Mem_ID" ColumnName="Mem_ID" />
                 <ScalarProperty Name="Mem_Name" ColumnName="Mem_Name" />
@@ -835,7 +639,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Move">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Move">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Move">
               <MappingFragment StoreEntitySet="WMS_PD_Move">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -855,7 +659,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Product">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Product">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Product">
               <MappingFragment StoreEntitySet="WMS_PD_Product">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
@@ -897,94 +701,8 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WMS_PD_Product_copy1">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Product_copy1">
-              <MappingFragment StoreEntitySet="WMS_PD_Product_copy1">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
-                <ScalarProperty Name="PRO_Des" ColumnName="PRO_Des" />
-                <ScalarProperty Name="PRO_Lot" ColumnName="PRO_Lot" />
-                <ScalarProperty Name="PRO_Quantity" ColumnName="PRO_Quantity" />
-                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
-                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
-                <ScalarProperty Name="PRO_Recive" ColumnName="PRO_Recive" />
-                <ScalarProperty Name="PRO_SO" ColumnName="PRO_SO" />
-                <ScalarProperty Name="PRO_Cus" ColumnName="PRO_Cus" />
-                <ScalarProperty Name="PRO_Ref" ColumnName="PRO_Ref" />
-                <ScalarProperty Name="PRO_Shop_Packing__No" ColumnName="PRO_Shop_Packing _No" />
-                <ScalarProperty Name="PRO_Tag_No" ColumnName="PRO_Tag_No" />
-                <ScalarProperty Name="PRO_Item_No" ColumnName="PRO_Item_No" />
-                <ScalarProperty Name="PRO_Package" ColumnName="PRO_Package" />
-                <ScalarProperty Name="PRO_Net" ColumnName="PRO_Net" />
-                <ScalarProperty Name="PRO_Gross" ColumnName="PRO_Gross" />
-                <ScalarProperty Name="PRO_Tare" ColumnName="PRO_Tare" />
-                <ScalarProperty Name="PRO_Extra" ColumnName="PRO_Extra" />
-                <ScalarProperty Name="PRO_Actual" ColumnName="PRO_Actual" />
-                <ScalarProperty Name="PRO_Customter_Drum_No" ColumnName="PRO_Customter_Drum_No" />
-                <ScalarProperty Name="PRO_Drum_Dimension" ColumnName="PRO_Drum_Dimension" />
-                <ScalarProperty Name="PRO_Item_Type" ColumnName="PRO_Item_Type" />
-                <ScalarProperty Name="PRO_Unit" ColumnName="PRO_Unit" />
-                <ScalarProperty Name="PRO_Status" ColumnName="PRO_Status" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Pro_Reel_No" ColumnName="Pro_Reel_No" />
-                <ScalarProperty Name="Pro_Check_Status" ColumnName="Pro_Check_Status" />
-                <ScalarProperty Name="Pro_User_Check" ColumnName="Pro_User_Check" />
-                <ScalarProperty Name="Pro_Owner" ColumnName="Pro_Owner" />
-                <ScalarProperty Name="Print_TF" ColumnName="Print_TF" />
-                <ScalarProperty Name="Qty_Ship" ColumnName="Qty_Ship" />
-                <ScalarProperty Name="Ref_Barcode" ColumnName="Ref_Barcode" />
-                <ScalarProperty Name="Tranfer_Sap" ColumnName="Tranfer_Sap" />
-                <ScalarProperty Name="Tranfer_Sap_Date" ColumnName="Tranfer_Sap_Date" />
-                <ScalarProperty Name="Pic" ColumnName="Pic" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WMS_PD_Products">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Products">
-              <MappingFragment StoreEntitySet="WMS_PD_Products">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PRO_ID" ColumnName="PRO_ID" />
-                <ScalarProperty Name="PRO_Des" ColumnName="PRO_Des" />
-                <ScalarProperty Name="PRO_Lot" ColumnName="PRO_Lot" />
-                <ScalarProperty Name="PRO_Quantity" ColumnName="PRO_Quantity" />
-                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
-                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
-                <ScalarProperty Name="PRO_Recive" ColumnName="PRO_Recive" />
-                <ScalarProperty Name="PRO_SO" ColumnName="PRO_SO" />
-                <ScalarProperty Name="PRO_Cus" ColumnName="PRO_Cus" />
-                <ScalarProperty Name="PRO_Ref" ColumnName="PRO_Ref" />
-                <ScalarProperty Name="PRO_Shop_Packing__No" ColumnName="PRO_Shop_Packing _No" />
-                <ScalarProperty Name="PRO_Tag_No" ColumnName="PRO_Tag_No" />
-                <ScalarProperty Name="PRO_Item_No" ColumnName="PRO_Item_No" />
-                <ScalarProperty Name="PRO_Package" ColumnName="PRO_Package" />
-                <ScalarProperty Name="PRO_Net" ColumnName="PRO_Net" />
-                <ScalarProperty Name="PRO_Gross" ColumnName="PRO_Gross" />
-                <ScalarProperty Name="PRO_Tare" ColumnName="PRO_Tare" />
-                <ScalarProperty Name="PRO_Extra" ColumnName="PRO_Extra" />
-                <ScalarProperty Name="PRO_Actual" ColumnName="PRO_Actual" />
-                <ScalarProperty Name="PRO_Customter_Drum_No" ColumnName="PRO_Customter_Drum_No" />
-                <ScalarProperty Name="PRO_Drum_Dimension" ColumnName="PRO_Drum_Dimension" />
-                <ScalarProperty Name="PRO_Item_Type" ColumnName="PRO_Item_Type" />
-                <ScalarProperty Name="PRO_Unit" ColumnName="PRO_Unit" />
-                <ScalarProperty Name="PRO_Status" ColumnName="PRO_Status" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Pro_Reel_No" ColumnName="Pro_Reel_No" />
-                <ScalarProperty Name="Pro_Check_Status" ColumnName="Pro_Check_Status" />
-                <ScalarProperty Name="Pro_User_Check" ColumnName="Pro_User_Check" />
-                <ScalarProperty Name="Pro_Owner" ColumnName="Pro_Owner" />
-                <ScalarProperty Name="Print_TF" ColumnName="Print_TF" />
-                <ScalarProperty Name="Qty_Ship" ColumnName="Qty_Ship" />
-                <ScalarProperty Name="Ref_Barcode" ColumnName="Ref_Barcode" />
-                <ScalarProperty Name="Tranfer_Sap" ColumnName="Tranfer_Sap" />
-                <ScalarProperty Name="Tranfer_Sap_Date" ColumnName="Tranfer_Sap_Date" />
-                <ScalarProperty Name="Pic" ColumnName="Pic" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Site">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Site">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Site">
               <MappingFragment StoreEntitySet="WMS_PD_Site">
                 <ScalarProperty Name="S_ID" ColumnName="S_ID" />
                 <ScalarProperty Name="S_Name" ColumnName="S_Name" />
@@ -995,7 +713,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Mat">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Mat">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Mat">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Mat">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Material" ColumnName="Material" />
@@ -1004,7 +722,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Pac">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Pac">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Pac">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Pac">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
@@ -1013,7 +731,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WMS_PD_Master_Pac_tmp">
-            <EntityTypeMapping TypeName="WMS_PDModel.WMS_PD_Master_Pac_tmp">
+            <EntityTypeMapping TypeName="aa.WMS_PD_Master_Pac_tmp">
               <MappingFragment StoreEntitySet="WMS_PD_Master_Pac_tmp">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Packing_Item" ColumnName="Packing_Item" />
