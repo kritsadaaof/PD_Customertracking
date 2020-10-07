@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PD_CusTracking.Models;//1 
-//using System.Web.Script.Serialization;
-using System.Web.UI.WebControls;
+using PD_CusTracking.Models;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 
@@ -13,8 +9,7 @@ namespace PD_CusTracking.Controllers
 {
     public class HomeController : Controller
     {
-        private Entities DbFile = new Entities(); //2 EworkTTLiveEntities
-        private EworkTTLiveEntities DbFileETT = new EworkTTLiveEntities();
+        private Entities DbFile = new Entities();
         public ActionResult Index()
         {
             return View();
@@ -38,57 +33,32 @@ namespace PD_CusTracking.Controllers
             return View();
         }
 
-        public ActionResult Return()
+        public void Receives(Object sender,EventArgs e)
         {
-            return View();
+            Delivery_PD_Process DbFile = new Delivery_PD_Process();
+            
         }
-
-        public ActionResult ReturnDoc()
+        public static string insertdata(string tag, string truck, string user)
         {
-            return View();
-        }
-        public string GETWO(string WO)
-        {
-            try
-            { 
-                var data = (from Dl_TR in DbFile.Delivery_PD_Process
-                            join WMS_Pros in DbFile.WMS_PD_Product on Dl_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
-                            from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where Dl_TR.Delivery_WO.Equals(WO)&&Dl_TR.Delivery_Status.Equals("T")
-                            select new
-                            {
-                                Dl_TR.Delivery_WO,
-                                Dl_TR.Delivery_TAG,
-                                Dl_TR.Delivery_Truck,
-                                WMS_Pro.PRO_Cus
-                            }).AsEnumerable().GroupBy(k => new { k.PRO_Cus }).Select(k => k.First()).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
-                return jsonlog;
-            }
-            catch { return null; }
-        }//CheckLocation  //CheckUser
-        public string GETWODoc(string WO)
-        {
-            try
+            string msg = "";
+            SqlConnection con = new SqlConnection("Data Source=localhost\\SQLEXPRESS;initial catalog=WMS_PD;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("insert into Delivery_PD_Process values(@tag, @truck,@user)", con);
+            cmd.Parameters.AddWithValue("@tag", tag);
+            cmd.Parameters.AddWithValue("@truck", truck);
+            cmd.Parameters.AddWithValue("@user", user);
+            con.Open();
+            int i = cmd.ExecuteNonQuery();
+            if (i == 1)
             {
-                var data = (from Dl_TR in DbFile.Delivery_PD_Process
-                            join WMS_Pros in DbFile.WMS_PD_Product on Dl_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
-                            from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where Dl_TR.Delivery_WO.Equals(WO)
-                            select new
-                            {
-                                Dl_TR.Delivery_WO,
-                                Dl_TR.Delivery_TAG,
-                                Dl_TR.Delivery_Truck,
-                                WMS_Pro.PRO_Cus
-                            }).AsEnumerable().GroupBy(k => new { k.PRO_Cus }).Select(k => k.First()).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
-                return jsonlog;
+                msg = "true";
+            } else
+            {
+                msg = "false";
             }
-            catch { return null; }
-        }//CheckLocation  //CheckUser
+            return msg;
+        }
 
-        public string CheckUser(string USER)
+            public string CheckUser(string USER)
         {
             try
             {
@@ -102,7 +72,7 @@ namespace PD_CusTracking.Controllers
                 return jsonlog;
             }
             catch { return null; }
-        }//CheckLocation  //CheckUser
+        }
 
         public string CheckTAG(string BARCODE)
         {
@@ -121,53 +91,18 @@ namespace PD_CusTracking.Controllers
                }
                catch { return null; }  
         }
-        public string CheckTAG_Return(string WO,string CUS, string BARCODE)
+        public string SaveData(string BARCODE,string TRUCK,string USER)
         {
             try
             {
-                var data = (from DL_TR in DbFile.Delivery_PD_Process
-                            join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
-                            from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where DL_TR.Delivery_WO.Equals(WO)&&DL_TR.Delivery_TAG.Equals(BARCODE)&&WMS_Pro.PRO_Cus.Equals(CUS)&&DL_TR.Delivery_Status.Equals("T")
-                            select new
-                            {
-                                DL_TR.Delivery_TAG 
+                var CheckDLY = DbFile.Delivery_PD_Process.OrderByDescending(a=>a.Delivery_WO).FirstOrDefault();
 
-                            }).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
-                return jsonlog;
-            }
-            catch { return null; }
-        }
-        public string CheckWO(string BARCODE)
-        {
-            try
-            {
-                var data = (from ETT_TR in DbFileETT.TR_Record
-                            where ETT_TR.WO_No.Equals(BARCODE)
-                            select new
-                            {
-                                ETT_TR.WO_No,
-                                ETT_TR.Truck_Code
-
-                            }).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
-                return jsonlog;
-            }
-            catch { return null; }
-        }
-        public string SaveData( string BARCODE, string WO, string USER)
-        {
-            try
-            {
-                var ETT_TR = DbFileETT.TR_Record.Where(a=>a.WO_No.Equals(WO)).FirstOrDefault();
-
-                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
+                int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
 
                 var DLY = new Delivery_PD_Process();
-                DLY.Delivery_WO = WO;
+                DLY.Delivery_WO = WO.ToString();
                 DLY.Delivery_TAG = BARCODE;
-                DLY.Delivery_Truck = ETT_TR.Truck_Code;
+                DLY.Delivery_Truck = TRUCK;
                 DLY.Delivery_User = USER;
                 DLY.Delivery_Status = "T";
                 DLY.Delivery_Date = DateTime.Now;
@@ -177,24 +112,7 @@ namespace PD_CusTracking.Controllers
             }
             catch { return "F"; }
         }
-        public string SaveReturn(string BARCODE, string WO, string USER)
-        {
-            try
-            {
-                var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
 
-                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
-
-                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();          
-                DLY.Delivery_User = USER;
-                DLY.Delivery_Status = "S";
-                DLY.Delivery_Date_Cus = DateTime.Now; 
-                DbFile.SaveChanges();
-                return "S";
-            }
-            catch { return "F"; }
-        }
-        
 
     }
 }
