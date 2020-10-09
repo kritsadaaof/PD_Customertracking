@@ -14,6 +14,8 @@ namespace PD_CusTracking.Models
     
     public partial class Delivery_PD_Process
     {
+        internal string Delivery_Doc;
+
         public int ID { get; set; }
         public string Delivery_WO { get; set; }
         public string Delivery_TAG { get; set; }
