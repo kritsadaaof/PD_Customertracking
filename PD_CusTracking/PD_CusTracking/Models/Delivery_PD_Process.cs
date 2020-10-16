@@ -14,8 +14,6 @@ namespace PD_CusTracking.Models
     
     public partial class Delivery_PD_Process
     {
-        internal string Delivery_Doc;
-
         public int ID { get; set; }
         public string Delivery_WO { get; set; }
         public string Delivery_TAG { get; set; }
@@ -24,5 +22,6 @@ namespace PD_CusTracking.Models
         public string Delivery_Status { get; set; }
         public Nullable<System.DateTime> Delivery_Date { get; set; }
         public Nullable<System.DateTime> Delivery_Date_Cus { get; set; }
+        public string Delivery_Doc { get; set; }
     }
 }

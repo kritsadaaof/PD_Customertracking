@@ -1,4 +1,4 @@
-﻿var i = 0;
+﻿var i = 0; 
 $(document).ready(function () {
     $("#WO").focus();
     //var TAG = ;
@@ -31,42 +31,25 @@ $(document).ready(function () {
     $("#User").change(function (e) {
         $("#TAG").focus();
     });
+    $("#Save").click(function () {
+        if ($("#WO").val() != "" && $("#User").val() != "") {
+            $.post(baseUrl + "Home/SaveDOC", {
+                WO: $("#WO").val(),
+                USER: $("#User").val()
+            }).done(function (data) {
+                if (data == "S") {
+                    Upload();
+                    alert("บันทึกสำเร็จ");
+                    window.location = baseUrl + "Home/Return";
+                }
 
+                else {
+                    alert("กรุณากรอกข้อมูล");
+                }
+            });
 
-    $("#SavePic").click(function () {
-
-        $.post("../Home/SaveUpload", {
-            WO: $("#WO").val(),
-           
-
-        }).done(function (data) {
-            if (data == "S") {
-                Upload();
-                alert("บันทึกสำเร็จ");
-
-                window.location = baseUrl + "Home/PicUpload";
-            }
-            else if (data == "N") { alert("กรุณากรอกข้อมูลให้ครบ", 'Error'); }
-
-        });
-
+        };
     });
-
-    function Upload() {
-
-        var formData = new FormData($("#formUP")[0]);
-        // var NAME = $('#Barcode').val();
-        $.ajax({
-            type: 'POST',
-            url: "/Home/UploadFiles",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false
-        }).done(function (data) {
-        });
-
-    }
     function Click() {
         $(".C").click(function () {
             document.getElementById('TableDetai').style.display = 'none';
@@ -82,4 +65,18 @@ $(document).ready(function () {
             //  alert(i);
         });
     }
+    function Upload() {
+        var formData = new FormData($("#formUP")[0]);
+        $.ajax({
+            type: 'POST',
+            url: "../Home/UploadFiles",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function (data) {
+        });
+    }
 });
+
+

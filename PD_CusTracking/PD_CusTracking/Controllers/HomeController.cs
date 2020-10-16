@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using PD_CusTracking.Models;//1 
 //using System.Web.Script.Serialization;
 using System.Web.UI.WebControls;
-using System.Web.Script.Serialization;
 using System.Data.SqlClient;
+using System.Web.Script.Serialization;
 using System.IO;
 
 namespace PD_CusTracking.Controllers
@@ -19,7 +19,7 @@ namespace PD_CusTracking.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        } 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -35,7 +35,7 @@ namespace PD_CusTracking.Controllers
         }
 
         public ActionResult Receive()
-        {
+        { 
             return View();
         }
 
@@ -48,19 +48,14 @@ namespace PD_CusTracking.Controllers
         {
             return View();
         }
-        public ActionResult PicUpload()
-        {
-            return View();
-        }
-
         public string GETWO(string WO)
         {
             try
-            {
+            { 
                 var data = (from Dl_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on Dl_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where Dl_TR.Delivery_WO.Equals(WO) && Dl_TR.Delivery_Status.Equals("T")
+                            where Dl_TR.Delivery_WO.Equals(WO)&&Dl_TR.Delivery_Status.Equals("T")
                             select new
                             {
                                 Dl_TR.Delivery_WO,
@@ -112,32 +107,32 @@ namespace PD_CusTracking.Controllers
 
         public string CheckTAG(string BARCODE)
         {
-            try
-            {
-                var data = (from TR_Pro in DbFile.WMS_PD_Product
-                            where TR_Pro.Barcode.Equals(BARCODE)
-                            select new
-                            {
-                                TR_Pro.Barcode,
-                                TR_Pro.PRO_Cus
-
-                            }).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
-                return jsonlog;
-            }
-            catch { return null; }
+               try
+               {
+                   var data = (from TR_Pro in DbFile.WMS_PD_Product
+                               where TR_Pro.Barcode.Equals(BARCODE)
+                               select new
+                               {
+                                   TR_Pro.Barcode,
+                                   TR_Pro.PRO_Cus
+                                   
+                               }).ToList();
+                   string jsonlog = new JavaScriptSerializer().Serialize(data);
+                   return jsonlog;
+               }
+               catch { return null; }  
         }
-        public string CheckTAG_Return(string WO, string CUS, string BARCODE)
+        public string CheckTAG_Return(string WO,string CUS, string BARCODE)
         {
             try
             {
                 var data = (from DL_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where DL_TR.Delivery_WO.Equals(WO) && DL_TR.Delivery_TAG.Equals(BARCODE) && WMS_Pro.PRO_Cus.Equals(CUS) && DL_TR.Delivery_Status.Equals("T")
+                            where DL_TR.Delivery_WO.Equals(WO)&&DL_TR.Delivery_TAG.Equals(BARCODE)&&WMS_Pro.PRO_Cus.Equals(CUS)&&DL_TR.Delivery_Status.Equals("T")
                             select new
                             {
-                                DL_TR.Delivery_TAG
+                                DL_TR.Delivery_TAG 
 
                             }).ToList();
                 string jsonlog = new JavaScriptSerializer().Serialize(data);
@@ -162,11 +157,11 @@ namespace PD_CusTracking.Controllers
             }
             catch { return null; }
         }
-        public string SaveData(string BARCODE, string WO, string USER)
+        public string SaveData( string BARCODE, string WO, string USER)
         {
             try
             {
-                var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
+                var ETT_TR = DbFileETT.TR_Record.Where(a=>a.WO_No.Equals(WO)).FirstOrDefault();
 
                 //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
 
@@ -187,30 +182,45 @@ namespace PD_CusTracking.Controllers
         {
             try
             {
-
                 var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
 
                 //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
 
-                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
+                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();          
                 DLY.Delivery_User = USER;
                 DLY.Delivery_Status = "S";
-                DLY.Delivery_Date_Cus = DateTime.Now;
+                DLY.Delivery_Date_Cus = DateTime.Now; 
                 DbFile.SaveChanges();
                 return "S";
             }
             catch { return "F"; }
         }
-        [HttpPost]
-        public string UploadFiles(HttpPostedFileBase file, string NAME) 
-        {
 
+        public string SaveDOC(string WO, string CUS)
+        {
+            try
+            {
+              //  var WMS_DLV = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).Select(c => { c.Delivery_Doc = ; return c; }).ToList();
+               // collection.Select(c => { c.PropertyToSet = value; return c; }).ToList();
+                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
+
+              //  var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
+              //  DLY.Delivery_User = USER;
+             //   DLY.Delivery_Status = "S";
+              //  DLY.Delivery_Date_Cus = DateTime.Now;
+               // DbFile.SaveChanges();
+                return "S";
+            }
+            catch { return "F"; }
+        }
+        [HttpPost]
+        public string UploadFiles(HttpPostedFileBase file, string NAME)
+        {
             if (file != null && file.ContentLength > 0)
                 try
                 {
-                    
-                    string path = Path.Combine(Server.MapPath("~/Content/pic/Item"),
-                    Path.GetFileName(Session["PicNAME"].ToString()));
+                    string path = Path.Combine(Server.MapPath("~/Content/Pic/Item"),
+                    Path.GetFileName(Session["PicNAME"].ToString() + ".jpg"));
                     file.SaveAs(path);
                     return "S";
                 }
@@ -227,19 +237,18 @@ namespace PD_CusTracking.Controllers
 
         }
         [HttpPost]
-        public string SaveUpload(string WO)
+        public string SaveUpload(string BARCODE)
         {
             try
             {
-                var TR_PRO = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).Take(1).SingleOrDefault();
-                TR_PRO.Delivery_Doc = "~/Content/pic/Item";
-
+                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
+                DLY.Delivery_Doc = BARCODE + ".jpg";
                 DbFile.SaveChanges();
                 return "S";
             }
             catch { return "N"; }
         }
-     
+
 
     }
 }

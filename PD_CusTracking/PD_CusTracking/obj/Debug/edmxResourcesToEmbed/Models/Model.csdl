@@ -12,6 +12,7 @@
     <Property Name="Delivery_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
     <Property Name="Delivery_Date_Cus" Type="DateTime" Precision="3" />
+    <Property Name="Delivery_Doc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Update_LOT_A">
     <Key>

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Delivery_PD_Process">
       <EntityTypeMapping TypeName="WMS_PDModel.Delivery_PD_Process">
         <MappingFragment StoreEntitySet="Delivery_PD_Process">
+          <ScalarProperty Name="Delivery_Doc" ColumnName="Delivery_Doc" />
           <ScalarProperty Name="Delivery_Date_Cus" ColumnName="Delivery_Date_Cus" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Delivery_WO" ColumnName="Delivery_WO" />

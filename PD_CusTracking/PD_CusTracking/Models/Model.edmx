@@ -17,6 +17,7 @@
           <Property Name="Delivery_Status" Type="varchar" MaxLength="10" />
           <Property Name="Delivery_Date" Type="datetime" />
           <Property Name="Delivery_Date_Cus" Type="datetime" />
+          <Property Name="Delivery_Doc" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Update_LOT_A">
           <Key>
@@ -373,6 +374,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Delivery_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
           <Property Name="Delivery_Date_Cus" Type="DateTime" Precision="3" />
+          <Property Name="Delivery_Doc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Update_LOT_A">
           <Key>
@@ -698,6 +700,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <EntitySetMapping Name="Delivery_PD_Process">
             <EntityTypeMapping TypeName="WMS_PDModel.Delivery_PD_Process">
               <MappingFragment StoreEntitySet="Delivery_PD_Process">
+                <ScalarProperty Name="Delivery_Doc" ColumnName="Delivery_Doc" />
                 <ScalarProperty Name="Delivery_Date_Cus" ColumnName="Delivery_Date_Cus" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Delivery_WO" ColumnName="Delivery_WO" />

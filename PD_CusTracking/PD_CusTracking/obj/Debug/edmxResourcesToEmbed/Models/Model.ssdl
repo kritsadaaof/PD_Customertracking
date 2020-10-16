@@ -12,6 +12,7 @@
     <Property Name="Delivery_Status" Type="varchar" MaxLength="10" />
     <Property Name="Delivery_Date" Type="datetime" />
     <Property Name="Delivery_Date_Cus" Type="datetime" />
+    <Property Name="Delivery_Doc" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Update_LOT_A">
     <Key>
