@@ -19,7 +19,7 @@ namespace PD_CusTracking.Controllers
         public ActionResult Index()
         {
             return View();
-        } 
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -35,7 +35,7 @@ namespace PD_CusTracking.Controllers
         }
 
         public ActionResult Receive()
-        { 
+        {
             return View();
         }
 
@@ -51,11 +51,11 @@ namespace PD_CusTracking.Controllers
         public string GETWO(string WO)
         {
             try
-            { 
+            {
                 var data = (from Dl_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on Dl_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where Dl_TR.Delivery_WO.Equals(WO)&&Dl_TR.Delivery_Status.Equals("T")
+                            where Dl_TR.Delivery_WO.Equals(WO) && Dl_TR.Delivery_Status.Equals("T")
                             select new
                             {
                                 Dl_TR.Delivery_WO,
@@ -75,7 +75,7 @@ namespace PD_CusTracking.Controllers
                 var data = (from Dl_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on Dl_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where Dl_TR.Delivery_WO.Equals(WO)
+                            where Dl_TR.Delivery_WO.Equals(WO)&&Dl_TR.Delivery_Doc==null
                             select new
                             {
                                 Dl_TR.Delivery_WO,
@@ -107,34 +107,55 @@ namespace PD_CusTracking.Controllers
 
         public string CheckTAG(string BARCODE)
         {
-               try
-               {
-                   var data = (from TR_Pro in DbFile.WMS_PD_Product
-                               where TR_Pro.Barcode.Equals(BARCODE)
-                               select new
-                               {
-                                   TR_Pro.Barcode,
-                                   TR_Pro.PRO_Cus
-                                   
-                               }).ToList();
-                   string jsonlog = new JavaScriptSerializer().Serialize(data);
-                   return jsonlog;
-               }
-               catch { return null; }  
+            try
+            {
+                var data = (from TR_Pro in DbFile.WMS_PD_Product
+                            where TR_Pro.Barcode.Equals(BARCODE)
+                            select new
+                            {
+                                TR_Pro.Barcode,
+                                TR_Pro.PRO_Cus
+
+                            }).ToList();
+                string jsonlog = new JavaScriptSerializer().Serialize(data);
+                return jsonlog;
+            }
+            catch { return null; }
         }
-        public string CheckTAG_Return(string WO,string CUS, string BARCODE)
+        public string CheckTAG_Return(string WO, string CUS, string BARCODE)
         {
             try
             {
                 var data = (from DL_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
-                            where DL_TR.Delivery_WO.Equals(WO)&&DL_TR.Delivery_TAG.Equals(BARCODE)&&WMS_Pro.PRO_Cus.Equals(CUS)&&DL_TR.Delivery_Status.Equals("T")
+                            where DL_TR.Delivery_WO.Equals(WO) && DL_TR.Delivery_TAG.Equals(BARCODE) && WMS_Pro.PRO_Cus.Equals(CUS) && DL_TR.Delivery_Status.Equals("T")
                             select new
                             {
-                                DL_TR.Delivery_TAG 
+                                DL_TR.Delivery_TAG
 
                             }).ToList();
+                string jsonlog = new JavaScriptSerializer().Serialize(data);
+                return jsonlog;
+            }
+            catch { return null; }
+        }
+
+        public string CheckTAG_ReturnDOC(string WO, string CUS)
+        {
+            try
+            {
+                var data = (from DL_TR in DbFile.Delivery_PD_Process
+                            join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
+                            from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
+                            where DL_TR.Delivery_WO.Equals(WO) && WMS_Pro.PRO_Cus.Equals(CUS) && DL_TR.Delivery_Status.Equals("T")
+                            select new
+                            {
+                                DL_TR.Delivery_WO,
+                                WMS_Pro.PRO_Cus
+
+                            }).FirstOrDefault();
+                Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus);
                 string jsonlog = new JavaScriptSerializer().Serialize(data);
                 return jsonlog;
             }
@@ -157,11 +178,11 @@ namespace PD_CusTracking.Controllers
             }
             catch { return null; }
         }
-        public string SaveData( string BARCODE, string WO, string USER)
+        public string SaveData(string BARCODE, string WO, string USER)
         {
             try
             {
-                var ETT_TR = DbFileETT.TR_Record.Where(a=>a.WO_No.Equals(WO)).FirstOrDefault();
+                var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
 
                 //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
 
@@ -186,10 +207,10 @@ namespace PD_CusTracking.Controllers
 
                 //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
 
-                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();          
+                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
                 DLY.Delivery_User = USER;
                 DLY.Delivery_Status = "S";
-                DLY.Delivery_Date_Cus = DateTime.Now; 
+                DLY.Delivery_Date_Cus = DateTime.Now;
                 DbFile.SaveChanges();
                 return "S";
             }
@@ -200,26 +221,47 @@ namespace PD_CusTracking.Controllers
         {
             try
             {
-              //  var WMS_DLV = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).Select(c => { c.Delivery_Doc = ; return c; }).ToList();
-               // collection.Select(c => { c.PropertyToSet = value; return c; }).ToList();
-                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
+                var data = (from DL_TR in DbFile.Delivery_PD_Process
+                            join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
+                            from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
+                            where DL_TR.Delivery_WO.Equals(WO) && WMS_Pro.PRO_Cus.Equals(CUS) && DL_TR.Delivery_Status.Equals("T")
+                            select new
+                            {
+                                DL_TR.Delivery_WO,
+                                WMS_Pro.PRO_Cus,
+                                DL_TR.Delivery_Doc,
+                                DL_TR.Delivery_TAG,
+                                DL_TR.ID
+                                
 
-              //  var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
-              //  DLY.Delivery_User = USER;
-             //   DLY.Delivery_Status = "S";
-              //  DLY.Delivery_Date_Cus = DateTime.Now;
-               // DbFile.SaveChanges();
+                            }).FirstOrDefault();
+                //  Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus);
+              //  data.ForEach(a=>a.ID.Equals("aa"));
+              //  for (int i = 0; i < data.Count; i++)
+              //  {
+              //      var dataDL = DbFile.Delivery_PD_Process.Where(a => a.ID.Equals(data.))).FirstOrDefault();
+               //     dataDL.Delivery_Doc = Session["PicNAME"].ToString();
+               //     DbFile.SaveChanges();
+              //  }
+                var dataDL = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(data.Delivery_WO)).FirstOrDefault();
+                dataDL.Delivery_Doc = Session["PicNAME"].ToString();
+                DbFile.SaveChanges();
                 return "S";
             }
             catch { return "F"; }
-        }
+        } 
         [HttpPost]
         public string UploadFiles(HttpPostedFileBase file, string NAME)
         {
             if (file != null && file.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("~/Content/Pic/Item"),
+                    //var fileName = Path.GetFileName(file.FileName);
+                    // var path = Path.Combine(Server.MapPath("~/Content/Pic/"), fileName);
+                    // file.SaveAs(path);
+                    // return "S";
+
+                    string path = Path.Combine(Server.MapPath("~/Content/Pic"),
                     Path.GetFileName(Session["PicNAME"].ToString() + ".jpg"));
                     file.SaveAs(path);
                     return "S";
@@ -236,6 +278,7 @@ namespace PD_CusTracking.Controllers
             }
 
         }
+
         [HttpPost]
         public string SaveUpload(string BARCODE)
         {
@@ -248,6 +291,21 @@ namespace PD_CusTracking.Controllers
             }
             catch { return "N"; }
         }
+        // [HttpPost]
+        /*   public string CheckBarPic(string BAR)
+           {
+               var Item_Data = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG == BAR).SingleOrDefault();
+               if (Item_Data != null)
+               {
+                   Session["PicNAME"] = Item_Data.Delivery_TAG;
+                   return Item_Data.Delivery_TAG.ToString();
+               }
+               else
+               {
+                   return null;
+               }
+           }
+        */
 
 
     }

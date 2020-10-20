@@ -1,7 +1,6 @@
-﻿var i = 0; 
+﻿var i = 0;
 $(document).ready(function () {
     $("#WO").focus();
-    //var TAG = ;
     $("#WO").change(function (e) {
         document.getElementById('TAGCus').style.display = 'none';
         $('#data-table-basic').dataTable().fnClearTable();
@@ -20,7 +19,6 @@ $(document).ready(function () {
 
                 });
                 Click()
-                // $("#WO").val('').focus();
             }
             else {
                 alert("ไม่พบข้อมูล WO นี้");
@@ -30,39 +28,60 @@ $(document).ready(function () {
     });
     $("#User").change(function (e) {
         $("#TAG").focus();
+
     });
-    $("#Save").click(function () {
-        if ($("#WO").val() != "" && $("#User").val() != "") {
+    $('#TAG').on('keydown', function (e) {
+        if (e.key == 'Enter') {
+            $.ajax({
+                type: 'post',
+                url: baseUrl + "Home/CheckBarPic",
+                data: { BAR: $('#TAG').val() },
+                success: function (data) {
+                    if (data != "") {
+                        $('#Barcodes').html(data);
+                        $('#User').focus();
+                    }
+                    else {
+                        alert("ไม่พบข้อมูลนี้", "Error");
+                        $('#TAG').val("");
+                    }
+                }
+            });
+        }
+    });
+    $("#Save").click(function () { 
             $.post(baseUrl + "Home/SaveDOC", {
                 WO: $("#WO").val(),
-                USER: $("#User").val()
+                CUS: $("#Cus").val()
             }).done(function (data) {
                 if (data == "S") {
                     Upload();
                     alert("บันทึกสำเร็จ");
-                    window.location = baseUrl + "Home/Return";
+                    window.location = baseUrl + "Home/ReturnDoc";
                 }
 
-                else {
-                    alert("กรุณากรอกข้อมูล");
+                else { 
                 }
-            });
+            }); 
+    }); 
 
-        };
-    });
     function Click() {
         $(".C").click(function () {
+            $.post(baseUrl + "Home/CheckTAG_ReturnDOC", {
+                WO: $("#WO").val(),
+                CUS: this.id
+            });
             document.getElementById('TableDetai').style.display = 'none';
             document.getElementById('TAGCus').style.display = '';
             $("#Cus").val(this.id);
             $("#User").focus();
+
         });
     }
     function ClickDelete() {
         $(".Delete").click(function () {
             document.getElementById(this.id).remove();
             i -= 1;
-            //  alert(i);
         });
     }
     function Upload() {
