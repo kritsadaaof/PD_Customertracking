@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Web.Script.Serialization;
 using System.IO;
+using System.Net;
+using System.Text;
 
 namespace PD_CusTracking.Controllers
 {
@@ -67,7 +69,7 @@ namespace PD_CusTracking.Controllers
                 return jsonlog;
             }
             catch { return null; }
-        }//CheckLocation  //CheckUser
+        }
         public string GETWODoc(string WO)
         {
             try
@@ -87,7 +89,7 @@ namespace PD_CusTracking.Controllers
                 return jsonlog;
             }
             catch { return null; }
-        }//CheckLocation  //CheckUser
+        }
 
         public string CheckUser(string USER)
         {
@@ -103,7 +105,7 @@ namespace PD_CusTracking.Controllers
                 return jsonlog;
             }
             catch { return null; }
-        }//CheckLocation  //CheckUser
+        }
 
         public string CheckTAG(string BARCODE)
         {
@@ -183,8 +185,7 @@ namespace PD_CusTracking.Controllers
             try
             {
                 var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
-
-                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
+ 
 
                 var DLY = new Delivery_PD_Process();
                 DLY.Delivery_WO = WO;
@@ -195,6 +196,7 @@ namespace PD_CusTracking.Controllers
                 DLY.Delivery_Date = DateTime.Now;
                 DbFile.Delivery_PD_Process.Add(DLY);
                 DbFile.SaveChanges();
+                lineNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -204,14 +206,12 @@ namespace PD_CusTracking.Controllers
             try
             {
                 var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
-
-                //int WO = int.Parse(CheckDLY.Delivery_WO) + 1; 
-
                 var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
                 DLY.Delivery_User = USER;
                 DLY.Delivery_Status = "S";
                 DLY.Delivery_Date_Cus = DateTime.Now;
                 DbFile.SaveChanges();
+                lineNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -232,35 +232,46 @@ namespace PD_CusTracking.Controllers
                                 DL_TR.Delivery_Doc,
                                 DL_TR.Delivery_TAG,
                                 DL_TR.ID
-                                
-
+                           
                             }).FirstOrDefault();
-                //  Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus);
-              //  data.ForEach(a=>a.ID.Equals("aa"));
-              //  for (int i = 0; i < data.Count; i++)
-              //  {
-              //      var dataDL = DbFile.Delivery_PD_Process.Where(a => a.ID.Equals(data.))).FirstOrDefault();
-               //     dataDL.Delivery_Doc = Session["PicNAME"].ToString();
-               //     DbFile.SaveChanges();
-              //  }
                 var dataDL = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(data.Delivery_WO)).FirstOrDefault();
                 dataDL.Delivery_Doc = Session["PicNAME"].ToString();
+                dataDL.Delivery_Pic = Session["PicNAME"].ToString();
                 DbFile.SaveChanges();
+                lineNotification(WO);
                 return "S";
             }
             catch { return "F"; }
         } 
         [HttpPost]
-        public string UploadFiles(HttpPostedFileBase file, string NAME)
+        public string UploadFilesDoc(HttpPostedFileBase file, string NAME)
         {
             if (file != null && file.ContentLength > 0)
                 try
                 {
-                    //var fileName = Path.GetFileName(file.FileName);
-                    // var path = Path.Combine(Server.MapPath("~/Content/Pic/"), fileName);
-                    // file.SaveAs(path);
-                    // return "S";
+                    string path = Path.Combine(Server.MapPath("~/Content/Doc"),
+                    Path.GetFileName(Session["PicNAME"].ToString() + ".jpg"));
+                    file.SaveAs(path);
+                    return "S";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    return null;
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file.";
+                return null;
+            }
 
+        }
+        [HttpPost]
+        public string UploadFilesPic(HttpPostedFileBase file, string NAME)
+        {
+            if (file != null && file.ContentLength > 0)
+                try
+                {
                     string path = Path.Combine(Server.MapPath("~/Content/Pic"),
                     Path.GetFileName(Session["PicNAME"].ToString() + ".jpg"));
                     file.SaveAs(path);
@@ -280,7 +291,7 @@ namespace PD_CusTracking.Controllers
         }
 
         [HttpPost]
-        public string SaveUpload(string BARCODE)
+        public string SaveUploadDoc(string BARCODE)
         {
             try
             {
@@ -291,22 +302,53 @@ namespace PD_CusTracking.Controllers
             }
             catch { return "N"; }
         }
-        // [HttpPost]
-        /*   public string CheckBarPic(string BAR)
-           {
-               var Item_Data = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG == BAR).SingleOrDefault();
-               if (Item_Data != null)
-               {
-                   Session["PicNAME"] = Item_Data.Delivery_TAG;
-                   return Item_Data.Delivery_TAG.ToString();
-               }
-               else
-               {
-                   return null;
-               }
-           }
-        */
+        [HttpPost]
+        public string SaveUploadPic(string BARCODE)
+        {
+            try
+            {
+                var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
+                DLY.Delivery_Pic = BARCODE + ".jpg";
+                DbFile.SaveChanges();
+                return "S";
+            }
+            catch { return "N"; }
+        }
+        private string lineNotification(string Wo)
+        {
+            
+            string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
+            //var CheckBarWH = DbFile.TR_Warehouse.Where(a => a.Bracode.Equals(BAR)).FirstOrDefault();
+            //var CheckItem = DbFile.Master_Item.Where(a => a.Barcode.Equals(BAR)).FirstOrDefault();
+            //var CheckCus = DbFile.Master_Customer.Where(a => a.Cus_Code.Equals(CheckItem.Customer)).FirstOrDefault();
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
+                var postData = string.Format("message={0}", "ทดสอบ" + "\n");
+                //   postData += string.Format("Barcode : " + EditP.Barcode + "\n");
+                //postData += string.Format("ลูกค้า : " + CheckCus.Cus_Name + "\n");
+                //postData += string.Format("สินค้า : " + CheckItem.Item_Name + "\n");
+                //postData += string.Format("จำนวน : " + QTY + " ชิ้น\n");
+                //postData += string.Format("วันที/เวลา: " + DateTime.Now + "\n");
+                var data = Encoding.UTF8.GetBytes(postData);
 
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+                request.Headers.Add("Authorization", "Bearer " + token);
+
+                using (var stream = request.GetRequestStream()) stream.Write(data, 0, data.Length);
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+
+        }
 
     }
 }

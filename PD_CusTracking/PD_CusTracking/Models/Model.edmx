@@ -18,7 +18,16 @@
           <Property Name="Delivery_Date" Type="datetime" />
           <Property Name="Delivery_Date_Cus" Type="datetime" />
           <Property Name="Delivery_Doc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Delivery_Pic" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'WMS_PD.dbo.SO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SO">
+          <Property Name="SO" Type="varchar" MaxLength="255" />
+          <Property Name="CUS" Type="varchar" MaxLength="255" />
+          <Property Name="MAT" Type="varchar" MaxLength="255" />
+          <Property Name="DES" Type="varchar" MaxLength="255" />
+        </EntityType>-->
         <EntityType Name="Update_LOT_A">
           <Key>
             <PropertyRef Name="Id" />
@@ -375,6 +384,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
           <Property Name="Delivery_Date_Cus" Type="DateTime" Precision="3" />
           <Property Name="Delivery_Doc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Delivery_Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Update_LOT_A">
           <Key>
@@ -700,6 +710,7 @@ warning 6002: The table/view 'WMS_PD.dbo.WMS_PD_Master_Pac_tmp' does not have a 
           <EntitySetMapping Name="Delivery_PD_Process">
             <EntityTypeMapping TypeName="WMS_PDModel.Delivery_PD_Process">
               <MappingFragment StoreEntitySet="Delivery_PD_Process">
+                <ScalarProperty Name="Delivery_Pic" ColumnName="Delivery_Pic" />
                 <ScalarProperty Name="Delivery_Doc" ColumnName="Delivery_Doc" />
                 <ScalarProperty Name="Delivery_Date_Cus" ColumnName="Delivery_Date_Cus" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

@@ -530,7 +530,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Pic\Item\" />
+    <Folder Include="Content\Doc\" />
+    <Folder Include="Content\Pic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

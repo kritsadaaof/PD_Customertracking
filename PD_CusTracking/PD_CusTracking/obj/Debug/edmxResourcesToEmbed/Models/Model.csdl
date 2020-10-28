@@ -13,6 +13,7 @@
     <Property Name="Delivery_Date" Type="DateTime" Precision="3" />
     <Property Name="Delivery_Date_Cus" Type="DateTime" Precision="3" />
     <Property Name="Delivery_Doc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Delivery_Pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Update_LOT_A">
     <Key>

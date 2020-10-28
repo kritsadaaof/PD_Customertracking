@@ -17,19 +17,15 @@ $(document).ready(function () {
                         pr[i]["Delivery_Truck"],                        
                         '<a href="#"  class="C" id="' + pr[i]["PRO_Cus"] + '">' + pr[i]["PRO_Cus"]  + '</a>'
                     ]); 
-
                 });
                 Click()
-               // $("#WO").val('').focus();
+                
             }
             else {  
                 alert("ไม่พบข้อมูล WO นี้/ลงล้อแล้ว");
                 $("#WO").val('').focus();
             } 
         });
-    });
-    $("#User").change(function (e) {
-        $("#TAG").focus();
     });
     $("#TAG").change(function (e) {
         $.post(baseUrl + "Home/CheckTAG_Return", {
@@ -46,7 +42,6 @@ $(document).ready(function () {
                 $('#TAGDetail').append('<a title="' + pr[0]["Delivery_TAG"] + '" class="Delete" id="' + i + '">' + pr[0]["Delivery_TAG"] + '</a>' + " ");
                 i += 1;
                 ClickDelete();
-
                 $("#TAG").val('').focus();
             }
         });
@@ -79,7 +74,7 @@ function Click() {
         document.getElementById('TableDetai').style.display = 'none';
         document.getElementById('TAGCus').style.display = '';
         $("#Cus").val(this.id);
-        $("#User").focus();
+        $("#TAG").focus();
     });
 }
 function ClickDelete() {

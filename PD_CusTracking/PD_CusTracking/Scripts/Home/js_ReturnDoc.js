@@ -15,8 +15,8 @@ $(document).ready(function () {
                         pr[i]["Delivery_WO"],
                         pr[i]["Delivery_Truck"],
                         '<a href="#"  class="C" id="' + pr[i]["PRO_Cus"] + '">' + pr[i]["PRO_Cus"] + '</a>'
+                        
                     ]);
-
                 });
                 Click()
             }
@@ -55,7 +55,8 @@ $(document).ready(function () {
                 CUS: $("#Cus").val()
             }).done(function (data) {
                 if (data == "S") {
-                    Upload();
+                    UploadDoc();
+                    UploadPic();
                     alert("บันทึกสำเร็จ");
                     window.location = baseUrl + "Home/ReturnDoc";
                 }
@@ -84,11 +85,23 @@ $(document).ready(function () {
             i -= 1;
         });
     }
-    function Upload() {
-        var formData = new FormData($("#formUP")[0]);
+    function UploadDoc() {
+        var formData = new FormData($("#formUpLoadDoc")[0]);
         $.ajax({
             type: 'POST',
-            url: "../Home/UploadFiles",
+            url: "../Home/UploadFilesDoc",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function (data) {
+        });
+    }
+    function UploadPic() {
+        var formData = new FormData($("#formUpLoadPic")[0]);
+        $.ajax({
+            type: 'POST',
+            url: "../Home/UploadFilesPic",
             data: formData,
             cache: false,
             contentType: false,

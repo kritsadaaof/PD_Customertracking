@@ -13,7 +13,16 @@
     <Property Name="Delivery_Date" Type="datetime" />
     <Property Name="Delivery_Date_Cus" Type="datetime" />
     <Property Name="Delivery_Doc" Type="nvarchar" MaxLength="100" />
+    <Property Name="Delivery_Pic" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'WMS_PD.dbo.SO' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SO">
+          <Property Name="SO" Type="varchar" MaxLength="255" />
+          <Property Name="CUS" Type="varchar" MaxLength="255" />
+          <Property Name="MAT" Type="varchar" MaxLength="255" />
+          <Property Name="DES" Type="varchar" MaxLength="255" />
+        </EntityType>-->
   <EntityType Name="Update_LOT_A">
     <Key>
       <PropertyRef Name="Id" />

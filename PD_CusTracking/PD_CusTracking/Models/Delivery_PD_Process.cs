@@ -23,5 +23,6 @@ namespace PD_CusTracking.Models
         public Nullable<System.DateTime> Delivery_Date { get; set; }
         public Nullable<System.DateTime> Delivery_Date_Cus { get; set; }
         public string Delivery_Doc { get; set; }
+        public string Delivery_Pic { get; set; }
     }
 }
