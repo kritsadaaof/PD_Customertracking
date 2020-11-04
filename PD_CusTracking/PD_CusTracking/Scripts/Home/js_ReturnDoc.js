@@ -55,12 +55,12 @@ $(document).ready(function () {
                 CUS: $("#Cus").val()
             }).done(function (data) {
                 if (data == "S") {
-                    UploadDoc();
-                    UploadPic();
-                    alert("บันทึกสำเร็จ");
-                    window.location = baseUrl + "Home/ReturnDoc";
+                   UploadDoc();
+                   UploadPic();
+                   alert("บันทึกสำเร็จ");
+                   window.location = baseUrl + "Home/ReturnDoc";
                 }
-
+        
                 else { 
                 }
             }); 

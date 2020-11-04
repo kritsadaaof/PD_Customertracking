@@ -142,7 +142,6 @@ namespace PD_CusTracking.Controllers
             }
             catch { return null; }
         }
-
         public string CheckTAG_ReturnDOC(string WO, string CUS)
         {
             try
@@ -157,6 +156,7 @@ namespace PD_CusTracking.Controllers
                                 WMS_Pro.PRO_Cus
 
                             }).FirstOrDefault();
+
                 Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus);
                 string jsonlog = new JavaScriptSerializer().Serialize(data);
                 return jsonlog;
@@ -196,7 +196,7 @@ namespace PD_CusTracking.Controllers
                 DLY.Delivery_Date = DateTime.Now;
                 DbFile.Delivery_PD_Process.Add(DLY);
                 DbFile.SaveChanges();
-                lineNotification(WO);
+                lineReceiveNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -211,7 +211,7 @@ namespace PD_CusTracking.Controllers
                 DLY.Delivery_Status = "S";
                 DLY.Delivery_Date_Cus = DateTime.Now;
                 DbFile.SaveChanges();
-                lineNotification(WO);
+                lineReturnNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -232,13 +232,11 @@ namespace PD_CusTracking.Controllers
                                 DL_TR.Delivery_Doc,
                                 DL_TR.Delivery_TAG,
                                 DL_TR.ID
-                           
                             }).FirstOrDefault();
                 var dataDL = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(data.Delivery_WO)).FirstOrDefault();
                 dataDL.Delivery_Doc = Session["PicNAME"].ToString();
                 dataDL.Delivery_Pic = Session["PicNAME"].ToString();
                 DbFile.SaveChanges();
-                lineNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -308,28 +306,59 @@ namespace PD_CusTracking.Controllers
             try
             {
                 var DLY = DbFile.Delivery_PD_Process.Where(a => a.Delivery_TAG.Equals(BARCODE)).FirstOrDefault();
-                DLY.Delivery_Pic = BARCODE + ".jpg";
+                DLY.Delivery_Doc = BARCODE + ".jpg";
                 DbFile.SaveChanges();
                 return "S";
             }
             catch { return "N"; }
         }
-        private string lineNotification(string Wo)
+        private string lineReceiveNotification(string Wo)
         {
             
             string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
-            //var CheckBarWH = DbFile.TR_Warehouse.Where(a => a.Bracode.Equals(BAR)).FirstOrDefault();
-            //var CheckItem = DbFile.Master_Item.Where(a => a.Barcode.Equals(BAR)).FirstOrDefault();
-            //var CheckCus = DbFile.Master_Customer.Where(a => a.Cus_Code.Equals(CheckItem.Customer)).FirstOrDefault();
+            var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(Wo)).FirstOrDefault();
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
-                var postData = string.Format("message={0}", "ทดสอบ" + "\n");
-                //   postData += string.Format("Barcode : " + EditP.Barcode + "\n");
-                //postData += string.Format("ลูกค้า : " + CheckCus.Cus_Name + "\n");
-                //postData += string.Format("สินค้า : " + CheckItem.Item_Name + "\n");
-                //postData += string.Format("จำนวน : " + QTY + " ชิ้น\n");
-                //postData += string.Format("วันที/เวลา: " + DateTime.Now + "\n");
+                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
+                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
+                postData += string.Format("คนขับรถ : " + WOBarcode.Delivery_User + "\n");
+                postData += string.Format("วันที/เวลาที่รับของขึ้นรถ : " + DateTime.Now + "\n");
+                var data = Encoding.UTF8.GetBytes(postData);
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+                request.Headers.Add("Authorization", "Bearer " + token);
+
+                using (var stream = request.GetRequestStream()) stream.Write(data, 0, data.Length);
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+
+        }
+        private string lineReturnNotification(string WO)
+        {
+
+            string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
+            var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
+            var getBarcode  = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
+          
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
+                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
+                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
+                postData += string.Format("ลูกค้า : " + getBarcode.PRO_Cus + "\n");
+                postData += string.Format("วันที/เวลาส่งของถึงลูกค้า : " + DateTime.Now + "\n");
                 var data = Encoding.UTF8.GetBytes(postData);
 
                 request.Method = "POST";
