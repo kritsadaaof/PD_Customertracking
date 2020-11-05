@@ -1,31 +1,22 @@
-﻿var i = 0; 
+﻿var i = 0;
 $(document).ready(function () {
     $("#WO").focus();
-    //var TAG = ;
     $("#WO").change(function (e) {
-        document.getElementById('TAGCus').style.display = 'none';
-        $('#data-table-basic').dataTable().fnClearTable();
+        document.getElementById('TableDetai').style.display = 'none';
+        document.getElementById('TAGCus').style.display = '';
         $.post(baseUrl + "Home/GETWO", {
             WO: $("#WO").val()
         }).done(function (data) {
             var pr = $.parseJSON(data);
-            if (data != "[]") { 
-                document.getElementById('TableDetai').style.display = '';
-                $.each(JSON.parse(data), function (i, obj) {
-                    $('#data-table-basic').dataTable().fnAddData([ 
-                        pr[i]["Delivery_WO"], 
-                        pr[i]["Delivery_Truck"],                        
-                        '<a href="#"  class="C" id="' + pr[i]["PRO_Cus"] + '">' + pr[i]["PRO_Cus"]  + '</a>'
-                    ]); 
-                });
-                Click()
-                
+            if (data != "[]") {
+                $("#Cus").val(pr[0]["PRO_Cus"]);
+                $("#TAG").focus();
             }
-            else {  
-                alert("ไม่พบข้อมูล WO นี้/ลงล้อแล้ว");
+            else {
+                alert("ไม่พบข้อมูล WO");
                 $("#WO").val('').focus();
             } 
-        });
+        });    
     });
     $("#TAG").change(function (e) {
         $.post(baseUrl + "Home/CheckTAG_Return", {
@@ -46,14 +37,13 @@ $(document).ready(function () {
             }
         });
     });
-  
+
     $("#Save").click(function () {
         if ($("#WO").val() != "" && $("#User").val() != "" && i > 0) {
             for (var a = 0; a < i; a++) {
                 $.post(baseUrl + "Home/SaveReturn", {
                     BARCODE: $("#" + a).html(),
                     WO: $("#WO").val(),
-                    // TRUCK: $("#Truck").val(),
                     USER: $("#User").val()
                 });
 
@@ -69,8 +59,9 @@ $(document).ready(function () {
 
 });
 
-function Click() {   
-    $(".C").click(function () {   
+function Click() {
+    $(".C").click(function () {
+
         document.getElementById('TableDetai').style.display = 'none';
         document.getElementById('TAGCus').style.display = '';
         $("#Cus").val(this.id);
@@ -81,7 +72,5 @@ function ClickDelete() {
     $(".Delete").click(function () {
         document.getElementById(this.id).remove();
         i -= 1;
-        //  alert(i);
     });
 }
-

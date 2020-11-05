@@ -2,23 +2,16 @@
 $(document).ready(function () {
     $("#WO").focus();
     $("#WO").change(function (e) {
-        document.getElementById('TAGCus').style.display = 'none';
-        $('#data-table-basic').dataTable().fnClearTable();
+        document.getElementById('TableDetai').style.display = 'none';
+        document.getElementById('TAGCus').style.display = '';
+
         $.post(baseUrl + "Home/GETWODoc", {
             WO: $("#WO").val()
         }).done(function (data) {
             var pr = $.parseJSON(data);
             if (data != "[]") {
-                document.getElementById('TableDetai').style.display = '';
-                $.each(JSON.parse(data), function (i, obj) {
-                    $('#data-table-basic').dataTable().fnAddData([
-                        pr[i]["Delivery_WO"],
-                        pr[i]["Delivery_Truck"],
-                        '<a href="#"  class="C" id="' + pr[i]["PRO_Cus"] + '">' + pr[i]["PRO_Cus"] + '</a>'
-                        
-                    ]);
-                });
-                Click()
+                $("#Cus").val(pr[0]["PRO_Cus"]);
+                $("#User").focus();
             }
             else {
                 alert("ไม่พบข้อมูล WO นี้");
@@ -50,20 +43,22 @@ $(document).ready(function () {
         }
     });
     $("#Save").click(function () { 
+      //  if ($("#WO").val() != "" && $("#formUpLoadDoc").val() != "") {
             $.post(baseUrl + "Home/SaveDOC", {
                 WO: $("#WO").val(),
                 CUS: $("#Cus").val()
             }).done(function (data) {
                 if (data == "S") {
-                   UploadDoc();
-                   UploadPic();
-                   alert("บันทึกสำเร็จ");
-                   window.location = baseUrl + "Home/ReturnDoc";
+                    UploadDoc();
+                    UploadPic();
+                    alert("บันทึกสำเร็จ");
+                    window.location = baseUrl + "Home/ReturnDoc";
                 }
-        
-                else { 
+                else {
+                    alert("บันทึกไม่สำเร็จ");
                 }
-            }); 
+            });
+       // }
     }); 
 
     function Click() {

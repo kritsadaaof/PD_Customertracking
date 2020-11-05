@@ -1,7 +1,6 @@
 ﻿var i = 0; 
 $(document).ready(function () {
     $("#WO").focus();
-    //var TAG = ;
     $("#WO").change(function (e) {
         $.post(baseUrl + "Home/CheckWO", {
             BARCODE: $("#WO").val()
@@ -17,7 +16,18 @@ $(document).ready(function () {
         });
     });
     $("#User").change(function (e) {
-        $("#TAG").focus();
+        $.post(baseUrl + "Home/CheckUser", {
+            USER: $("#User").val()
+        }).done(function (data) {
+            var pr = $.parseJSON(data);
+            if (data == "[]") {
+                $("#User").val("").focus();
+            }
+            else {
+                $("#User").val(pr[0]["Mem_Name"]);
+                $("#TAG").focus();
+            }
+        }); 
     });
     $("#TAG").change(function (e) {
         $.post(baseUrl + "Home/CheckTAG", {

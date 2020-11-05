@@ -157,7 +157,7 @@ namespace PD_CusTracking.Controllers
 
                             }).FirstOrDefault();
 
-                Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus);
+                Session["PicNAME"] = (data.Delivery_WO) + (data.PRO_Cus); 
                 string jsonlog = new JavaScriptSerializer().Serialize(data);
                 return jsonlog;
             }
@@ -218,10 +218,10 @@ namespace PD_CusTracking.Controllers
         }
 
         public string SaveDOC(string WO, string CUS)
-        {
-            try
-            {
-                var data = (from DL_TR in DbFile.Delivery_PD_Process
+        { 
+             try
+              {
+            var data = (from DL_TR in DbFile.Delivery_PD_Process
                             join WMS_Pros in DbFile.WMS_PD_Product on DL_TR.Delivery_TAG equals WMS_Pros.Barcode into WMS_Pro1
                             from WMS_Pro in WMS_Pro1.DefaultIfEmpty()
                             where DL_TR.Delivery_WO.Equals(WO) && WMS_Pro.PRO_Cus.Equals(CUS) && DL_TR.Delivery_Status.Equals("T")
@@ -232,11 +232,13 @@ namespace PD_CusTracking.Controllers
                                 DL_TR.Delivery_Doc,
                                 DL_TR.Delivery_TAG,
                                 DL_TR.ID
-                            }).FirstOrDefault();
-                var dataDL = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(data.Delivery_WO)).FirstOrDefault();
-                dataDL.Delivery_Doc = Session["PicNAME"].ToString();
-                dataDL.Delivery_Pic = Session["PicNAME"].ToString();
+                            }).ToList();
+                var dataDL = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
+                Session["PicNAME"] = WO;
+                dataDL.Delivery_Doc = WO +".JPG";
+                dataDL.Delivery_Pic = WO + ".JPG";
                 DbFile.SaveChanges();
+                UploadNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -359,6 +361,42 @@ namespace PD_CusTracking.Controllers
                 postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
                 postData += string.Format("ลูกค้า : " + getBarcode.PRO_Cus + "\n");
                 postData += string.Format("วันที/เวลาส่งของถึงลูกค้า : " + DateTime.Now + "\n");
+                var data = Encoding.UTF8.GetBytes(postData);
+
+                request.Method = "POST";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = data.Length;
+                request.Headers.Add("Authorization", "Bearer " + token);
+
+                using (var stream = request.GetRequestStream()) stream.Write(data, 0, data.Length);
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+
+        }
+        private string UploadNotification(string WO)
+        {
+
+            string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
+            var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
+            var getBarcode = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
+
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
+                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือนอัพโหลดรูปภาพสำเร็จ*********" + "\n");
+                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
+                postData += string.Format("ลูกค้า : " + getBarcode.PRO_Cus + "\n");
+                postData += string.Format("เอกสารที่อัพโหลด : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Doc/" + WOBarcode.Delivery_Doc + "\n");
+                postData += string.Format("รูปภาพสถานที่อัพโหลด : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Pic/" + WOBarcode.Delivery_Pic + "\n");
+                postData += string.Format("วันที/เวลาอัพโหลดรูปภาพ : " + DateTime.Now + "\n");
                 var data = Encoding.UTF8.GetBytes(postData);
 
                 request.Method = "POST";
