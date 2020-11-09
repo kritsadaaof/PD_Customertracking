@@ -60,11 +60,12 @@ $(document).ready(function () {
                     WO: $("#WO").val(),
                     BARCODE: $("#" + a).html()
                 }); 
-            }  
+            }
+            alert("บันทึกสำเร็จ"); 
             $.post(baseUrl + "Home/lineReceiveNotification", {
                 WO: $("#WO").val() 
             });
-            alert("บันทึกสำเร็จ");   
+             
             //location.reload();
         }
         else {

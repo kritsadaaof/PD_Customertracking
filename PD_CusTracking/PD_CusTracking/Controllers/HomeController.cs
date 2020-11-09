@@ -320,19 +320,25 @@ namespace PD_CusTracking.Controllers
             string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
             var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
             var getDriver = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WOBarcode.Delivery_WO)).FirstOrDefault();
+            var getData = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
+
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
-                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
-                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
-                
-                foreach (var item in getWheel)
-                {
-                    postData += string.Format("บาร์โค้ด Tag ล้อ : " + item.Delivery_TAG + "\n");
-                }
+                var postData = string.Format("message={0}", "แจ้งเตือนรับล้อขึ้นรถ" + "\n");
+                postData += string.Format("เลข WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("เลข SO : " + getData.PRO_SO + "\n");
+                postData += string.Format("ชื่อลูกค้า : " + getData.PRO_Cus + "\n");
+                postData += string.Format("ชื่อสาย : " + getData.PRO_Des + "\n");
+
+                //foreach (var item in getWheel)
+                //{
+                //postData += string.Format("บาร์โค้ด Tag ล้อ : " + item.Delivery_TAG + "\n");
+                //}
                 postData += string.Format("จำนวน : " + sum + "ล้อ"+"\n");
                 postData += string.Format("คนขับรถ : " + getDriver.Driv_Name + "\n");
-                postData += string.Format("วันที/เวลาที่รับของขึ้นรถ : " + DateTime.Now + "\n");
+                postData += string.Format("ทะเบียน : " + WOBarcode.Delivery_Truck + "\n");
+                postData += string.Format("วันเวลาที่รับของขึ้นรถ : " + DateTime.Now + "\n");
                 var data = Encoding.UTF8.GetBytes(postData);
 
                 request.Method = "POST";
@@ -354,19 +360,25 @@ namespace PD_CusTracking.Controllers
         }
         private string lineReturnNotification(string WO)
         {
-
+            var getWheel = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).ToList();
+            int sum = getWheel.Count();
             string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
             var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
-            var getBarcode  = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
+            var getDriver = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WOBarcode.Delivery_WO)).FirstOrDefault();
+            var getData  = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
           
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
-                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
-                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
-                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
-                postData += string.Format("ลูกค้า : " + getBarcode.PRO_Cus + "\n");
-                postData += string.Format("วันที/เวลาส่งของถึงลูกค้า : " + DateTime.Now + "\n");
+                var postData = string.Format("message={0}", "\n" + "แจ้งเตือนส่งสินค้า" + "\n");
+                postData += string.Format("เลข WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("เลข SO : " + getData.PRO_SO + "\n");
+                postData += string.Format("ชื่อลูกค้า : " + getData.PRO_Cus + "\n");
+                postData += string.Format("ชื่อสาย : " + getData.PRO_Des + "\n");
+                postData += string.Format("จำนวน : " + sum + "ล้อ" + "\n");
+                postData += string.Format("คนขับรถ : " + getDriver.Driv_Name + "\n");
+                postData += string.Format("ทะเบียน : " + WOBarcode.Delivery_Truck + "\n");
+                postData += string.Format("วัน/เวลาที่ส่งสินค้า : " + DateTime.Now + "\n");
                 var data = Encoding.UTF8.GetBytes(postData);
 
                 request.Method = "POST";
@@ -388,21 +400,29 @@ namespace PD_CusTracking.Controllers
         }
         private string UploadNotification(string WO)
         {
-
-            string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
+            var getWheel = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).ToList();
+            int sum = getWheel.Count();
             var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
+            var getDriver = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WOBarcode.Delivery_WO)).FirstOrDefault();
+            var getData  = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
+            string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
             var getBarcode = DbFile.WMS_PD_Product.Where(a => a.Barcode.Equals(WOBarcode.Delivery_TAG)).FirstOrDefault();
 
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
-                var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือนอัพโหลดรูปภาพสำเร็จ*********" + "\n");
-                postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
-                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
-                postData += string.Format("ลูกค้า : " + getBarcode.PRO_Cus + "\n");
-                postData += string.Format("เอกสารที่อัพโหลด : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Doc/" + WOBarcode.Delivery_Doc + "\n");
-                postData += string.Format("รูปภาพสถานที่อัพโหลด : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Pic/" + WOBarcode.Delivery_Pic + "\n");
-                postData += string.Format("วันที/เวลาอัพโหลดรูปภาพ : " + DateTime.Now + "\n");
+                var postData = string.Format("message={0}", "\n" + "แจ้งเตือนยืนยันเอกสารส่งสินค้า" + "\n");
+                postData += string.Format("เลข WO : " + WOBarcode.Delivery_WO + "\n");
+                postData += string.Format("เลข SO : " + getData.PRO_SO + "\n");
+                postData += string.Format("ชื่อลูกค้า : " + getData.PRO_Cus + "\n");
+                postData += string.Format("ชื่อสาย : " + getData.PRO_Des + "\n");
+                postData += string.Format("จำนวน : " + sum + "ล้อ" + "\n");
+                postData += string.Format("คนขับรถ : " + getDriver.Driv_Name + "\n");
+                postData += string.Format("ทะเบียน : " + WOBarcode.Delivery_Truck + "\n");
+                postData += string.Format("วัน/เวลาที่ส่งเอกสาร : " + DateTime.Now + "\n");
+                postData += string.Format("รูปใบส่งสินค้า : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Doc/" + WOBarcode.Delivery_Doc + "\n");
+                postData += string.Format("รูปยืนยันการส่งสินค้า : http://mmbkk.dyndns.org:8084/pd-delivery/Content/Pic/" + WOBarcode.Delivery_Pic + "\n");
+                
                 var data = Encoding.UTF8.GetBytes(postData);
 
                 request.Method = "POST";
