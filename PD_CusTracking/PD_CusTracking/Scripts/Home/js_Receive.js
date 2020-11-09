@@ -11,7 +11,7 @@ $(document).ready(function () {
                 $("#WO").val("").focus();
             }
             else {
-                $("#User").focus();
+                $("#TAG").focus();
             }
         });
     });
@@ -27,58 +27,56 @@ $(document).ready(function () {
                 $("#User").val(pr[0]["Mem_Name"]);
                 $("#TAG").focus();
             }
-        }); 
+        });
     });
     $("#TAG").change(function (e) {
         $.post(baseUrl + "Home/CheckTAG", {
             BARCODE: $("#TAG").val()
         }).done(function (data) {
             var pr = $.parseJSON(data);
+
             if (data == "[]") {
                 alert("ไม่พบข้อมูล");
                 $("#TAG").val("").focus();
             }
-            else {                
-                $('#TAGDetail').append('<a title="' + pr[0]["Barcode"]+'" class="C" id="' + i + '">' + pr[0]["Barcode"] + '</a>'+" ");
+            else {
+                $('#TAGDetail').append('<a title="' + pr[0]["Barcode"] + '" class="C" id="' + i + '">' + pr[0]["Barcode"] + '</a>' + " ");
                 i += 1;
                 Click();
-               
                 $("#TAG").val('').focus();
-            } 
+            }
         });
     });
 
-  
-
-  
     $("#Save").click(function () {
-       // var prWO;
-        if ($("#WO").val() != "" && $("#User").val() != "" &&i>0) {            
-                    for (var a = 0; a < i; a++) {
-                        $.post(baseUrl + "Home/SaveData", {
-                            BARCODE: $("#" + a).html(),
-                            WO: $("#WO").val(),
-                           // TRUCK: $("#Truck").val(),
-                            USER: $("#User").val()
-                        });
-
-                    }
-                    alert("บันทึกสำเร็จ");
-                    location.reload(); 
+        // var prWO;
+        // if ($("#WO").val() != "" && $("#User").val() != "" &&i>0) {   
+        if ($("#WO").val() != "" && i > 0) {
+            for (var a = 0; a < i; a++) {
+                if (a === i) {
+                    break;
+                }
+            }
+            alert("บันทึกสำเร็จ");
+            $.post(baseUrl + "Home/SaveData", {
+                WO: $("#WO").val(),
+                BARCODE: $("#" + a).html()
+            });    
+            baseUrl + "Home/ReturnDoc";
+            location.reload();
         }
         else {
             alert("กรุณากรอกข้อมูล");
+            $("#WO").val("").focus();
         }
     });
 
 
+    function Click() {
+        $(".C").click(function () {
+            document.getElementById(this.id).remove();
+            i -= 1;    
+            //  alert(i);
+        });
+    }
 });
-
-function Click() {   
-    $(".C").click(function () {  
-      document.getElementById(this.id).remove();
-        i -= 1;
-      //  alert(i);
-    });
-}
-

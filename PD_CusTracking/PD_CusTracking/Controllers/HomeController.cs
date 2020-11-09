@@ -175,7 +175,8 @@ namespace PD_CusTracking.Controllers
                                 ETT_TR.Truck_Code
 
                             }).ToList();
-                string jsonlog = new JavaScriptSerializer().Serialize(data);
+                string jsonlog = new JavaScriptSerializer().Serialize(data); 
+
                 return jsonlog;
             }
             catch { return null; }
@@ -185,8 +186,6 @@ namespace PD_CusTracking.Controllers
             try
             {
                 var ETT_TR = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WO)).FirstOrDefault();
- 
-
                 var DLY = new Delivery_PD_Process();
                 DLY.Delivery_WO = WO;
                 DLY.Delivery_TAG = BARCODE;
@@ -314,18 +313,24 @@ namespace PD_CusTracking.Controllers
             }
             catch { return "N"; }
         }
-        private string lineReceiveNotification(string Wo)
+        private string lineReceiveNotification(string WO)
         {
-            
+            var getWheel = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).ToList();
+            int sum = getWheel.Count();
             string token = "C4EEhomujMG5xHobcPBJXS7Nfsb7gX7du38kCDGww3s";// Delivery PD
-            var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(Wo)).FirstOrDefault();
+            var WOBarcode = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).FirstOrDefault();
+            var getDriver = DbFileETT.TR_Record.Where(a => a.WO_No.Equals(WOBarcode.Delivery_WO)).FirstOrDefault();
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
                 var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
                 postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
-                postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
-                postData += string.Format("คนขับรถ : " + WOBarcode.Delivery_User + "\n");
+                for (int a = 0; a < sum; a++)
+                {
+                    postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
+                }
+                postData += string.Format("จำนวน : " + sum + "ล้อ"+"\n");
+                postData += string.Format("คนขับรถ : " + getDriver.Driv_Name + "\n");
                 postData += string.Format("วันที/เวลาที่รับของขึ้นรถ : " + DateTime.Now + "\n");
                 var data = Encoding.UTF8.GetBytes(postData);
 
