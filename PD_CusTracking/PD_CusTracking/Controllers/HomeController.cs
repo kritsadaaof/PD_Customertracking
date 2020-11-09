@@ -195,7 +195,7 @@ namespace PD_CusTracking.Controllers
                 DLY.Delivery_Date = DateTime.Now;
                 DbFile.Delivery_PD_Process.Add(DLY);
                 DbFile.SaveChanges();
-                lineReceiveNotification(WO);
+             //   lineReceiveNotification(WO);
                 return "S";
             }
             catch { return "F"; }
@@ -313,7 +313,7 @@ namespace PD_CusTracking.Controllers
             }
             catch { return "N"; }
         }
-        private string lineReceiveNotification(string WO)
+        public string lineReceiveNotification(string WO)
         {
             var getWheel = DbFile.Delivery_PD_Process.Where(a => a.Delivery_WO.Equals(WO)).ToList();
             int sum = getWheel.Count();
@@ -325,9 +325,10 @@ namespace PD_CusTracking.Controllers
                 var request = (HttpWebRequest)WebRequest.Create("https://notify-api.line.me/api/notify");
                 var postData = string.Format("message={0}", "\n" + "*********แจ้งเตือน*********" + "\n");
                 postData += string.Format("บาร์โค้ด WO : " + WOBarcode.Delivery_WO + "\n");
-                for (int a = 0; a < sum; a++)
+                
+                foreach (var item in getWheel)
                 {
-                    postData += string.Format("บาร์โค้ด Tag ล้อ : " + WOBarcode.Delivery_TAG + "\n");
+                    postData += string.Format("บาร์โค้ด Tag ล้อ : " + item.Delivery_TAG + "\n");
                 }
                 postData += string.Format("จำนวน : " + sum + "ล้อ"+"\n");
                 postData += string.Format("คนขับรถ : " + getDriver.Driv_Name + "\n");

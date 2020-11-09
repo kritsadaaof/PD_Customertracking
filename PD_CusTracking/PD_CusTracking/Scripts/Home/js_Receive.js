@@ -53,17 +53,19 @@ $(document).ready(function () {
         // if ($("#WO").val() != "" && $("#User").val() != "" &&i>0) {   
         if ($("#WO").val() != "" && i > 0) {
             for (var a = 0; a < i; a++) {
-                if (a === i) {
-                    break;
-                }
-            }
-            alert("บันทึกสำเร็จ");
-            $.post(baseUrl + "Home/SaveData", {
-                WO: $("#WO").val(),
-                BARCODE: $("#" + a).html()
-            });    
-            baseUrl + "Home/ReturnDoc";
-            location.reload();
+               // if (a === i) {
+               //     break;
+               // }
+                $.post(baseUrl + "Home/SaveData", {
+                    WO: $("#WO").val(),
+                    BARCODE: $("#" + a).html()
+                }); 
+            }  
+            $.post(baseUrl + "Home/lineReceiveNotification", {
+                WO: $("#WO").val() 
+            });
+            alert("บันทึกสำเร็จ");   
+            //location.reload();
         }
         else {
             alert("กรุณากรอกข้อมูล");
